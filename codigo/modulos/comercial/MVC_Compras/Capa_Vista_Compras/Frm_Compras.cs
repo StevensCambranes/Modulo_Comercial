@@ -18,6 +18,7 @@ namespace Capa_Vista_Compras
         }
 
         // Bryan Ramirez 0901-21-8202 27/10/2025 
+        // prueba
         // Función para abrir subformularios en el panel
         private void AbrirFormulario(Form formulario)
         {
