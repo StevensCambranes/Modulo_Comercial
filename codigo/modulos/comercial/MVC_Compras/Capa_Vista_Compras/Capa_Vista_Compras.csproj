@@ -52,7 +52,42 @@
     <Compile Include="Frm_Compras.Designer.cs">
       <DependentUpon>Frm_Compras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Compras_Periodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Compras_Periodo.Designer.cs">
+      <DependentUpon>Frm_Compras_Periodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Envio_Contabilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Envio_Contabilidad.Designer.cs">
+      <DependentUpon>Frm_Envio_Contabilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Factura_Proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Factura_Proveedor.Designer.cs">
+      <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Devolucion_Proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Devolucion_Proveedores.Designer.cs">
+      <DependentUpon>Frm_Devolucion_Proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Orden_Compra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Orden_Compra.Designer.cs">
+      <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Frm_Compras.resx">
+      <DependentUpon>Frm_Compras.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
