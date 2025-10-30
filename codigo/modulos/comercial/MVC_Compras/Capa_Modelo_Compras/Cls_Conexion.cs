@@ -12,7 +12,7 @@ namespace Capa_Modelo_Modulo_Comercial
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=NOMBRE ODBC");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bd_hoteleria");
             try
             {
                 conn.Open();

@@ -88,6 +88,15 @@
     <EmbeddedResource Include="Frm_Compras.resx">
       <DependentUpon>Frm_Compras.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Devolucion_Proveedores.resx">
+      <DependentUpon>Frm_Devolucion_Proveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Factura_Proveedor.resx">
+      <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Orden_Compra.resx">
+      <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
