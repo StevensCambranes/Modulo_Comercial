@@ -16,11 +16,8 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< Updated upstream
-            Application.Run(new Frm_Compras());
-=======
+//      Application.Run(new Frm_Compras());
             Application.Run(new Frm_Factura());
->>>>>>> Stashed changes
 
         }
     }
