@@ -5,35 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Odbc;
 
-namespace Capa_Modelo_Modulo_Comercial
+namespace Capa_Modelo_Compras
 {
     public class Cls_Conexion
     {
         public OdbcConnection conexion()
         {
-            //creacion de la conexion via ODBC
+            // Conexión ODBC a la base de datos Bd_Comercial
             OdbcConnection conn = new OdbcConnection("Dsn=Bd_hoteleria");
             try
             {
                 conn.Open();
             }
-            catch (OdbcException)
+            catch (OdbcException ex)
             {
-                Console.WriteLine("No Conectó");
+                Console.WriteLine("Error al conectar con la base de datos: " + ex.Message);
             }
             return conn;
         }
 
-        //metodo para cerrar la conexion
         public void desconexion(OdbcConnection conn)
         {
             try
             {
                 conn.Close();
             }
-            catch (OdbcException)
+            catch (OdbcException ex)
             {
-                Console.WriteLine("No Conectó");
+                Console.WriteLine("Error al cerrar la conexión: " + ex.Message);
             }
         }
     }

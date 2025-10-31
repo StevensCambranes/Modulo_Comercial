@@ -55,11 +55,11 @@ namespace Capa_Vista_Compras
             // 
             this.Gpb_Pendientes.Controls.Add(this.Dgv_Pendientes);
             this.Gpb_Pendientes.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Pendientes.Location = new System.Drawing.Point(30, 27);
-            this.Gpb_Pendientes.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Gpb_Pendientes.Location = new System.Drawing.Point(25, 25);
+            this.Gpb_Pendientes.Margin = new System.Windows.Forms.Padding(4);
             this.Gpb_Pendientes.Name = "Gpb_Pendientes";
-            this.Gpb_Pendientes.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Gpb_Pendientes.Size = new System.Drawing.Size(1245, 357);
+            this.Gpb_Pendientes.Padding = new System.Windows.Forms.Padding(4);
+            this.Gpb_Pendientes.Size = new System.Drawing.Size(1037, 325);
             this.Gpb_Pendientes.TabIndex = 0;
             this.Gpb_Pendientes.TabStop = false;
             this.Gpb_Pendientes.Text = "Compras Pendientes de Enviar a Contabilidad";
@@ -75,14 +75,14 @@ namespace Capa_Vista_Compras
             this.fecha,
             this.total,
             this.estado});
-            this.Dgv_Pendientes.Location = new System.Drawing.Point(30, 41);
-            this.Dgv_Pendientes.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Dgv_Pendientes.Location = new System.Drawing.Point(25, 37);
+            this.Dgv_Pendientes.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv_Pendientes.Name = "Dgv_Pendientes";
             this.Dgv_Pendientes.ReadOnly = true;
             this.Dgv_Pendientes.RowHeadersWidth = 51;
             this.Dgv_Pendientes.RowTemplate.Height = 24;
             this.Dgv_Pendientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_Pendientes.Size = new System.Drawing.Size(1185, 275);
+            this.Dgv_Pendientes.Size = new System.Drawing.Size(987, 250);
             this.Dgv_Pendientes.TabIndex = 0;
             // 
             // id_compra
@@ -126,11 +126,11 @@ namespace Capa_Vista_Compras
             this.Gpb_Envio.Controls.Add(this.Pgb_Envio);
             this.Gpb_Envio.Controls.Add(this.Lbl_Instruccion);
             this.Gpb_Envio.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Envio.Location = new System.Drawing.Point(30, 413);
-            this.Gpb_Envio.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Gpb_Envio.Location = new System.Drawing.Point(25, 375);
+            this.Gpb_Envio.Margin = new System.Windows.Forms.Padding(4);
             this.Gpb_Envio.Name = "Gpb_Envio";
-            this.Gpb_Envio.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Gpb_Envio.Size = new System.Drawing.Size(1245, 179);
+            this.Gpb_Envio.Padding = new System.Windows.Forms.Padding(4);
+            this.Gpb_Envio.Size = new System.Drawing.Size(1037, 163);
             this.Gpb_Envio.TabIndex = 1;
             this.Gpb_Envio.TabStop = false;
             this.Gpb_Envio.Text = "Proceso de Envio a Contabilidad";
@@ -138,8 +138,8 @@ namespace Capa_Vista_Compras
             // Lbl_Progreso
             // 
             this.Lbl_Progreso.AutoSize = true;
-            this.Lbl_Progreso.Location = new System.Drawing.Point(30, 130);
-            this.Lbl_Progreso.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Progreso.Location = new System.Drawing.Point(25, 118);
+            this.Lbl_Progreso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Progreso.Name = "Lbl_Progreso";
             this.Lbl_Progreso.Size = new System.Drawing.Size(115, 20);
             this.Lbl_Progreso.TabIndex = 2;
@@ -147,17 +147,17 @@ namespace Capa_Vista_Compras
             // 
             // Pgb_Envio
             // 
-            this.Pgb_Envio.Location = new System.Drawing.Point(30, 90);
-            this.Pgb_Envio.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Pgb_Envio.Location = new System.Drawing.Point(25, 82);
+            this.Pgb_Envio.Margin = new System.Windows.Forms.Padding(4);
             this.Pgb_Envio.Name = "Pgb_Envio";
-            this.Pgb_Envio.Size = new System.Drawing.Size(1185, 34);
+            this.Pgb_Envio.Size = new System.Drawing.Size(987, 31);
             this.Pgb_Envio.TabIndex = 1;
             // 
             // Lbl_Instruccion
             // 
             this.Lbl_Instruccion.AutoSize = true;
-            this.Lbl_Instruccion.Location = new System.Drawing.Point(30, 48);
-            this.Lbl_Instruccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Instruccion.Location = new System.Drawing.Point(25, 44);
+            this.Lbl_Instruccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Instruccion.Name = "Lbl_Instruccion";
             this.Lbl_Instruccion.Size = new System.Drawing.Size(422, 20);
             this.Lbl_Instruccion.TabIndex = 0;
@@ -170,68 +170,67 @@ namespace Capa_Vista_Compras
             this.Pnl_AccionesEnvio.Controls.Add(this.Btn_Historial);
             this.Pnl_AccionesEnvio.Controls.Add(this.Btn_Enviar);
             this.Pnl_AccionesEnvio.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pnl_AccionesEnvio.Location = new System.Drawing.Point(30, 619);
-            this.Pnl_AccionesEnvio.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Pnl_AccionesEnvio.Location = new System.Drawing.Point(25, 546);
+            this.Pnl_AccionesEnvio.Margin = new System.Windows.Forms.Padding(4);
             this.Pnl_AccionesEnvio.Name = "Pnl_AccionesEnvio";
-            this.Pnl_AccionesEnvio.Size = new System.Drawing.Size(1245, 110);
+            this.Pnl_AccionesEnvio.Size = new System.Drawing.Size(1037, 72);
             this.Pnl_AccionesEnvio.TabIndex = 2;
             // 
             // Btn_Cerrar
             // 
-            this.Btn_Cerrar.Location = new System.Drawing.Point(946, 32);
-            this.Btn_Cerrar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Cerrar.Location = new System.Drawing.Point(788, 14);
+            this.Btn_Cerrar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Cerrar.Name = "Btn_Cerrar";
-            this.Btn_Cerrar.Size = new System.Drawing.Size(150, 48);
+            this.Btn_Cerrar.Size = new System.Drawing.Size(125, 44);
             this.Btn_Cerrar.TabIndex = 3;
             this.Btn_Cerrar.Text = "Cerrar";
             this.Btn_Cerrar.UseVisualStyleBackColor = true;
             // 
             // Btn_Actualizar
             // 
-            this.Btn_Actualizar.Location = new System.Drawing.Point(727, 32);
-            this.Btn_Actualizar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Actualizar.Location = new System.Drawing.Point(606, 14);
+            this.Btn_Actualizar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Actualizar.Name = "Btn_Actualizar";
-            this.Btn_Actualizar.Size = new System.Drawing.Size(210, 48);
+            this.Btn_Actualizar.Size = new System.Drawing.Size(175, 44);
             this.Btn_Actualizar.TabIndex = 2;
             this.Btn_Actualizar.Text = "Actualizar Lista";
             this.Btn_Actualizar.UseVisualStyleBackColor = true;
             // 
             // Btn_Historial
             // 
-            this.Btn_Historial.Location = new System.Drawing.Point(414, 32);
-            this.Btn_Historial.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Historial.Location = new System.Drawing.Point(345, 14);
+            this.Btn_Historial.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Historial.Name = "Btn_Historial";
-            this.Btn_Historial.Size = new System.Drawing.Size(305, 48);
+            this.Btn_Historial.Size = new System.Drawing.Size(254, 44);
             this.Btn_Historial.TabIndex = 1;
             this.Btn_Historial.Text = "Ver Historial de Envios";
             this.Btn_Historial.UseVisualStyleBackColor = true;
             // 
             // Btn_Enviar
             // 
-            this.Btn_Enviar.Location = new System.Drawing.Point(117, 32);
-            this.Btn_Enviar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Enviar.Location = new System.Drawing.Point(97, 14);
+            this.Btn_Enviar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Enviar.Name = "Btn_Enviar";
-            this.Btn_Enviar.Size = new System.Drawing.Size(288, 48);
+            this.Btn_Enviar.Size = new System.Drawing.Size(240, 44);
             this.Btn_Enviar.TabIndex = 0;
             this.Btn_Enviar.Text = "Enviar a Contabilidad";
             this.Btn_Enviar.UseVisualStyleBackColor = true;
             // 
             // Frm_Envio_Contabilidad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1294, 740);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1078, 673);
             this.Controls.Add(this.Pnl_AccionesEnvio);
             this.Controls.Add(this.Gpb_Envio);
             this.Controls.Add(this.Gpb_Pendientes);
-            this.Font = new System.Drawing.Font("Rockwell", 12F);
+            this.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Envio_Contabilidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Envio_Contabilidad";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Gpb_Pendientes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Pendientes)).EndInit();
             this.Gpb_Envio.ResumeLayout(false);

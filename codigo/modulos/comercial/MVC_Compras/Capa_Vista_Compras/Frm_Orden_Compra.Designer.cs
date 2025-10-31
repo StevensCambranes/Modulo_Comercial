@@ -63,36 +63,36 @@ namespace Capa_Vista_Compras
             // Cbo_Proveedor
             // 
             this.Cbo_Proveedor.FormattingEnabled = true;
-            this.Cbo_Proveedor.Location = new System.Drawing.Point(192, 50);
-            this.Cbo_Proveedor.Margin = new System.Windows.Forms.Padding(5);
+            this.Cbo_Proveedor.Location = new System.Drawing.Point(148, 40);
+            this.Cbo_Proveedor.Margin = new System.Windows.Forms.Padding(4);
             this.Cbo_Proveedor.Name = "Cbo_Proveedor";
-            this.Cbo_Proveedor.Size = new System.Drawing.Size(321, 28);
+            this.Cbo_Proveedor.Size = new System.Drawing.Size(248, 28);
             this.Cbo_Proveedor.TabIndex = 0;
             // 
             // Dtp_Fecha
             // 
-            this.Dtp_Fecha.Location = new System.Drawing.Point(637, 47);
-            this.Dtp_Fecha.Margin = new System.Windows.Forms.Padding(5);
+            this.Dtp_Fecha.Location = new System.Drawing.Point(490, 38);
+            this.Dtp_Fecha.Margin = new System.Windows.Forms.Padding(4);
             this.Dtp_Fecha.Name = "Dtp_Fecha";
-            this.Dtp_Fecha.Size = new System.Drawing.Size(542, 27);
+            this.Dtp_Fecha.Size = new System.Drawing.Size(418, 27);
             this.Dtp_Fecha.TabIndex = 1;
             // 
             // Txt_Estado
             // 
-            this.Txt_Estado.Location = new System.Drawing.Point(192, 105);
-            this.Txt_Estado.Margin = new System.Windows.Forms.Padding(5);
+            this.Txt_Estado.Location = new System.Drawing.Point(148, 84);
+            this.Txt_Estado.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_Estado.Name = "Txt_Estado";
             this.Txt_Estado.ReadOnly = true;
-            this.Txt_Estado.Size = new System.Drawing.Size(241, 27);
+            this.Txt_Estado.Size = new System.Drawing.Size(186, 27);
             this.Txt_Estado.TabIndex = 2;
             // 
             // Txt_Total
             // 
-            this.Txt_Total.Location = new System.Drawing.Point(637, 100);
-            this.Txt_Total.Margin = new System.Windows.Forms.Padding(5);
+            this.Txt_Total.Location = new System.Drawing.Point(490, 80);
+            this.Txt_Total.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_Total.Name = "Txt_Total";
             this.Txt_Total.ReadOnly = true;
-            this.Txt_Total.Size = new System.Drawing.Size(160, 27);
+            this.Txt_Total.Size = new System.Drawing.Size(124, 27);
             this.Txt_Total.TabIndex = 3;
             this.Txt_Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -107,11 +107,11 @@ namespace Capa_Vista_Compras
             this.Gpb_Datos_Orden.Controls.Add(this.Dtp_Fecha);
             this.Gpb_Datos_Orden.Controls.Add(this.Txt_Estado);
             this.Gpb_Datos_Orden.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Datos_Orden.Location = new System.Drawing.Point(31, 31);
-            this.Gpb_Datos_Orden.Margin = new System.Windows.Forms.Padding(5);
+            this.Gpb_Datos_Orden.Location = new System.Drawing.Point(24, 25);
+            this.Gpb_Datos_Orden.Margin = new System.Windows.Forms.Padding(4);
             this.Gpb_Datos_Orden.Name = "Gpb_Datos_Orden";
-            this.Gpb_Datos_Orden.Padding = new System.Windows.Forms.Padding(5);
-            this.Gpb_Datos_Orden.Size = new System.Drawing.Size(1349, 172);
+            this.Gpb_Datos_Orden.Padding = new System.Windows.Forms.Padding(4);
+            this.Gpb_Datos_Orden.Size = new System.Drawing.Size(1038, 138);
             this.Gpb_Datos_Orden.TabIndex = 4;
             this.Gpb_Datos_Orden.TabStop = false;
             this.Gpb_Datos_Orden.Text = "Datos de la Orden de Compra";
@@ -119,8 +119,8 @@ namespace Capa_Vista_Compras
             // Lbl_Total
             // 
             this.Lbl_Total.AutoSize = true;
-            this.Lbl_Total.Location = new System.Drawing.Point(536, 105);
-            this.Lbl_Total.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Total.Location = new System.Drawing.Point(412, 84);
+            this.Lbl_Total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Total.Name = "Lbl_Total";
             this.Lbl_Total.Size = new System.Drawing.Size(48, 20);
             this.Lbl_Total.TabIndex = 7;
@@ -129,8 +129,8 @@ namespace Capa_Vista_Compras
             // Lbl_Estado
             // 
             this.Lbl_Estado.AutoSize = true;
-            this.Lbl_Estado.Location = new System.Drawing.Point(31, 110);
-            this.Lbl_Estado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Estado.Location = new System.Drawing.Point(24, 88);
+            this.Lbl_Estado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(62, 20);
             this.Lbl_Estado.TabIndex = 6;
@@ -139,8 +139,8 @@ namespace Capa_Vista_Compras
             // Lbl_Fecha
             // 
             this.Lbl_Fecha.AutoSize = true;
-            this.Lbl_Fecha.Location = new System.Drawing.Point(536, 55);
-            this.Lbl_Fecha.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Fecha.Location = new System.Drawing.Point(412, 44);
+            this.Lbl_Fecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
             this.Lbl_Fecha.Size = new System.Drawing.Size(56, 20);
             this.Lbl_Fecha.TabIndex = 5;
@@ -149,8 +149,8 @@ namespace Capa_Vista_Compras
             // Lbl_Proveedor
             // 
             this.Lbl_Proveedor.AutoSize = true;
-            this.Lbl_Proveedor.Location = new System.Drawing.Point(31, 55);
-            this.Lbl_Proveedor.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_Proveedor.Location = new System.Drawing.Point(24, 44);
+            this.Lbl_Proveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Proveedor.Name = "Lbl_Proveedor";
             this.Lbl_Proveedor.Size = new System.Drawing.Size(92, 20);
             this.Lbl_Proveedor.TabIndex = 4;
@@ -162,21 +162,21 @@ namespace Capa_Vista_Compras
             this.Gpb_Detalle.Controls.Add(this.Btn_AgregarProduc);
             this.Gpb_Detalle.Controls.Add(this.Dgv_Detalle);
             this.Gpb_Detalle.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Detalle.Location = new System.Drawing.Point(31, 219);
-            this.Gpb_Detalle.Margin = new System.Windows.Forms.Padding(5);
+            this.Gpb_Detalle.Location = new System.Drawing.Point(24, 175);
+            this.Gpb_Detalle.Margin = new System.Windows.Forms.Padding(4);
             this.Gpb_Detalle.Name = "Gpb_Detalle";
-            this.Gpb_Detalle.Padding = new System.Windows.Forms.Padding(5);
-            this.Gpb_Detalle.Size = new System.Drawing.Size(1349, 449);
+            this.Gpb_Detalle.Padding = new System.Windows.Forms.Padding(4);
+            this.Gpb_Detalle.Size = new System.Drawing.Size(1038, 359);
             this.Gpb_Detalle.TabIndex = 5;
             this.Gpb_Detalle.TabStop = false;
             this.Gpb_Detalle.Text = "Detalle Compra";
             // 
             // Btn_EliminarProduc
             // 
-            this.Btn_EliminarProduc.Location = new System.Drawing.Point(291, 375);
-            this.Btn_EliminarProduc.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_EliminarProduc.Location = new System.Drawing.Point(224, 300);
+            this.Btn_EliminarProduc.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_EliminarProduc.Name = "Btn_EliminarProduc";
-            this.Btn_EliminarProduc.Size = new System.Drawing.Size(265, 47);
+            this.Btn_EliminarProduc.Size = new System.Drawing.Size(204, 38);
             this.Btn_EliminarProduc.TabIndex = 2;
             this.Btn_EliminarProduc.Text = "Eliminar Producto";
             this.Btn_EliminarProduc.UseVisualStyleBackColor = true;
@@ -184,10 +184,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_AgregarProduc
             // 
-            this.Btn_AgregarProduc.Location = new System.Drawing.Point(31, 375);
-            this.Btn_AgregarProduc.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_AgregarProduc.Location = new System.Drawing.Point(24, 300);
+            this.Btn_AgregarProduc.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AgregarProduc.Name = "Btn_AgregarProduc";
-            this.Btn_AgregarProduc.Size = new System.Drawing.Size(258, 47);
+            this.Btn_AgregarProduc.Size = new System.Drawing.Size(198, 38);
             this.Btn_AgregarProduc.TabIndex = 1;
             this.Btn_AgregarProduc.Text = "Agregar Producto";
             this.Btn_AgregarProduc.UseVisualStyleBackColor = true;
@@ -204,12 +204,12 @@ namespace Capa_Vista_Compras
             this.cantidad,
             this.precio_unit,
             this.subtotal});
-            this.Dgv_Detalle.Location = new System.Drawing.Point(31, 47);
-            this.Dgv_Detalle.Margin = new System.Windows.Forms.Padding(5);
+            this.Dgv_Detalle.Location = new System.Drawing.Point(24, 38);
+            this.Dgv_Detalle.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv_Detalle.Name = "Dgv_Detalle";
             this.Dgv_Detalle.RowHeadersWidth = 51;
             this.Dgv_Detalle.RowTemplate.Height = 24;
-            this.Dgv_Detalle.Size = new System.Drawing.Size(1265, 311);
+            this.Dgv_Detalle.Size = new System.Drawing.Size(973, 249);
             this.Dgv_Detalle.TabIndex = 0;
             // 
             // id_producto
@@ -252,18 +252,18 @@ namespace Capa_Vista_Compras
             this.Pnl_Aplicaciones.Controls.Add(this.Btn_Guardar);
             this.Pnl_Aplicaciones.Controls.Add(this.Btn_Nuevo);
             this.Pnl_Aplicaciones.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Pnl_Aplicaciones.Location = new System.Drawing.Point(31, 672);
-            this.Pnl_Aplicaciones.Margin = new System.Windows.Forms.Padding(5);
+            this.Pnl_Aplicaciones.Location = new System.Drawing.Point(24, 538);
+            this.Pnl_Aplicaciones.Margin = new System.Windows.Forms.Padding(4);
             this.Pnl_Aplicaciones.Name = "Pnl_Aplicaciones";
-            this.Pnl_Aplicaciones.Size = new System.Drawing.Size(1349, 94);
+            this.Pnl_Aplicaciones.Size = new System.Drawing.Size(1038, 75);
             this.Pnl_Aplicaciones.TabIndex = 6;
             // 
             // Btn_Cancelar
             // 
-            this.Btn_Cancelar.Location = new System.Drawing.Point(1019, 20);
-            this.Btn_Cancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(784, 16);
+            this.Btn_Cancelar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
-            this.Btn_Cancelar.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Cancelar.Size = new System.Drawing.Size(124, 38);
             this.Btn_Cancelar.TabIndex = 5;
             this.Btn_Cancelar.Text = "Cancelar";
             this.Btn_Cancelar.UseVisualStyleBackColor = true;
@@ -271,10 +271,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_Aprobar
             // 
-            this.Btn_Aprobar.Location = new System.Drawing.Point(842, 20);
-            this.Btn_Aprobar.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Aprobar.Location = new System.Drawing.Point(648, 16);
+            this.Btn_Aprobar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Aprobar.Name = "Btn_Aprobar";
-            this.Btn_Aprobar.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Aprobar.Size = new System.Drawing.Size(124, 38);
             this.Btn_Aprobar.TabIndex = 4;
             this.Btn_Aprobar.Text = "Aprobar";
             this.Btn_Aprobar.UseVisualStyleBackColor = true;
@@ -282,10 +282,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_Anular
             // 
-            this.Btn_Anular.Location = new System.Drawing.Point(663, 20);
-            this.Btn_Anular.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Anular.Location = new System.Drawing.Point(510, 16);
+            this.Btn_Anular.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Anular.Name = "Btn_Anular";
-            this.Btn_Anular.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Anular.Size = new System.Drawing.Size(124, 38);
             this.Btn_Anular.TabIndex = 3;
             this.Btn_Anular.Text = "Anular";
             this.Btn_Anular.UseVisualStyleBackColor = true;
@@ -293,10 +293,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_Editar
             // 
-            this.Btn_Editar.Location = new System.Drawing.Point(484, 20);
-            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Editar.Location = new System.Drawing.Point(372, 16);
+            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Editar.Name = "Btn_Editar";
-            this.Btn_Editar.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Editar.Size = new System.Drawing.Size(124, 38);
             this.Btn_Editar.TabIndex = 2;
             this.Btn_Editar.Text = "Editar";
             this.Btn_Editar.UseVisualStyleBackColor = true;
@@ -304,10 +304,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_Guardar
             // 
-            this.Btn_Guardar.Location = new System.Drawing.Point(304, 20);
-            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Guardar.Location = new System.Drawing.Point(234, 16);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Guardar.Name = "Btn_Guardar";
-            this.Btn_Guardar.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Guardar.Size = new System.Drawing.Size(124, 38);
             this.Btn_Guardar.TabIndex = 1;
             this.Btn_Guardar.Text = "Guardar";
             this.Btn_Guardar.UseVisualStyleBackColor = true;
@@ -315,10 +315,10 @@ namespace Capa_Vista_Compras
             // 
             // Btn_Nuevo
             // 
-            this.Btn_Nuevo.Location = new System.Drawing.Point(127, 20);
-            this.Btn_Nuevo.Margin = new System.Windows.Forms.Padding(5);
+            this.Btn_Nuevo.Location = new System.Drawing.Point(98, 16);
+            this.Btn_Nuevo.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Nuevo.Name = "Btn_Nuevo";
-            this.Btn_Nuevo.Size = new System.Drawing.Size(161, 47);
+            this.Btn_Nuevo.Size = new System.Drawing.Size(124, 38);
             this.Btn_Nuevo.TabIndex = 0;
             this.Btn_Nuevo.Text = "Nuevo";
             this.Btn_Nuevo.UseVisualStyleBackColor = true;
@@ -326,21 +326,20 @@ namespace Capa_Vista_Compras
             // 
             // Frm_Orden_Compra
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1412, 936);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1086, 749);
             this.Controls.Add(this.Pnl_Aplicaciones);
             this.Controls.Add(this.Gpb_Detalle);
             this.Controls.Add(this.Gpb_Datos_Orden);
-            this.Font = new System.Drawing.Font("Rockwell", 13F);
+            this.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.MinimumSize = new System.Drawing.Size(1381, 878);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(1062, 702);
             this.Name = "Frm_Orden_Compra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Orden_Compra";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Gpb_Datos_Orden.ResumeLayout(false);
             this.Gpb_Datos_Orden.PerformLayout();
             this.Gpb_Detalle.ResumeLayout(false);

@@ -82,20 +82,35 @@
     <Compile Include="Frm_Orden_Compra.Designer.cs">
       <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Proveedor.Designer.cs">
+      <DependentUpon>Frm_Proveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Frm_Compras.resx">
       <DependentUpon>Frm_Compras.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Compras_Periodo.resx">
+      <DependentUpon>Frm_Compras_Periodo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Devolucion_Proveedores.resx">
       <DependentUpon>Frm_Devolucion_Proveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Envio_Contabilidad.resx">
+      <DependentUpon>Frm_Envio_Contabilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Factura_Proveedor.resx">
       <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Orden_Compra.resx">
       <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Proveedor.resx">
+      <DependentUpon>Frm_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

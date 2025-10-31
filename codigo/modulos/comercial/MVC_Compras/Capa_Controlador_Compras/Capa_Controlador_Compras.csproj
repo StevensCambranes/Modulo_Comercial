@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Controlador_Compras.cs" />
+    <Compile Include="Cls_Controlador_EnvioContabilidad.cs" />
+    <Compile Include="Cls_Controlador_Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
