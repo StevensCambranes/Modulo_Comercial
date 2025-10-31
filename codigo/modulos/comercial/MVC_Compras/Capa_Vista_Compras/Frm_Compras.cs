@@ -53,5 +53,10 @@ namespace Capa_Vista_Compras
         {
             AbrirFormulario(new Frm_Envio_Contabilidad());
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new Frm_Proveedor());
+        }
     }
 }

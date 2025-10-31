@@ -30,8 +30,12 @@ namespace Capa_Vista_Compras
         private void InitializeComponent()
         {
             this.Gpb_Filtros = new System.Windows.Forms.GroupBox();
-            this.Btn_Limpiar = new System.Windows.Forms.Button();
+            this.Lbl_FechaInicio = new System.Windows.Forms.Label();
+            this.Dtp_FechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.Lbl_FechaFin = new System.Windows.Forms.Label();
+            this.Dtp_FechaFin = new System.Windows.Forms.DateTimePicker();
             this.Btn_Buscar = new System.Windows.Forms.Button();
+            this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Dtp_Filtro = new System.Windows.Forms.DateTimePicker();
             this.Lbl_FechaFiltro = new System.Windows.Forms.Label();
             this.Rdb_Mes = new System.Windows.Forms.RadioButton();
@@ -57,56 +61,85 @@ namespace Capa_Vista_Compras
             // 
             // Gpb_Filtros
             // 
-            this.Gpb_Filtros.Controls.Add(this.Btn_Limpiar);
+            this.Gpb_Filtros.Controls.Add(this.Lbl_FechaInicio);
+            this.Gpb_Filtros.Controls.Add(this.Dtp_FechaInicio);
+            this.Gpb_Filtros.Controls.Add(this.Lbl_FechaFin);
+            this.Gpb_Filtros.Controls.Add(this.Dtp_FechaFin);
             this.Gpb_Filtros.Controls.Add(this.Btn_Buscar);
-            this.Gpb_Filtros.Controls.Add(this.Dtp_Filtro);
-            this.Gpb_Filtros.Controls.Add(this.Lbl_FechaFiltro);
-            this.Gpb_Filtros.Controls.Add(this.Rdb_Mes);
-            this.Gpb_Filtros.Controls.Add(this.Rdb_Dia);
-            this.Gpb_Filtros.Controls.Add(this.Lbl_TituloFiltro);
-            this.Gpb_Filtros.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Filtros.Location = new System.Drawing.Point(30, 27);
-            this.Gpb_Filtros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Gpb_Filtros.Controls.Add(this.Btn_Limpiar);
+            this.Gpb_Filtros.Font = new System.Drawing.Font("Rockwell", 10.2F);
+            this.Gpb_Filtros.Location = new System.Drawing.Point(25, 25);
             this.Gpb_Filtros.Name = "Gpb_Filtros";
-            this.Gpb_Filtros.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Gpb_Filtros.Size = new System.Drawing.Size(1245, 137);
+            this.Gpb_Filtros.Size = new System.Drawing.Size(1037, 125);
             this.Gpb_Filtros.TabIndex = 0;
             this.Gpb_Filtros.TabStop = false;
-            this.Gpb_Filtros.Text = "Filtros de Busqueda";
+            this.Gpb_Filtros.Text = "Filtro de Compras por Rango de Fechas";
             // 
-            // Btn_Limpiar
+            // Lbl_FechaInicio
             // 
-            this.Btn_Limpiar.Location = new System.Drawing.Point(1086, 48);
-            this.Btn_Limpiar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Btn_Limpiar.Name = "Btn_Limpiar";
-            this.Btn_Limpiar.Size = new System.Drawing.Size(150, 41);
-            this.Btn_Limpiar.TabIndex = 6;
-            this.Btn_Limpiar.Text = "Limpiar";
-            this.Btn_Limpiar.UseVisualStyleBackColor = true;
+            this.Lbl_FechaInicio.AutoSize = true;
+            this.Lbl_FechaInicio.Location = new System.Drawing.Point(40, 55);
+            this.Lbl_FechaInicio.Name = "Lbl_FechaInicio";
+            this.Lbl_FechaInicio.Size = new System.Drawing.Size(109, 20);
+            this.Lbl_FechaInicio.TabIndex = 0;
+            this.Lbl_FechaInicio.Text = "Fecha Inicio:";
+            // 
+            // Dtp_FechaInicio
+            // 
+            this.Dtp_FechaInicio.Location = new System.Drawing.Point(160, 50);
+            this.Dtp_FechaInicio.Name = "Dtp_FechaInicio";
+            this.Dtp_FechaInicio.Size = new System.Drawing.Size(250, 27);
+            this.Dtp_FechaInicio.TabIndex = 1;
+            // 
+            // Lbl_FechaFin
+            // 
+            this.Lbl_FechaFin.AutoSize = true;
+            this.Lbl_FechaFin.Location = new System.Drawing.Point(440, 55);
+            this.Lbl_FechaFin.Name = "Lbl_FechaFin";
+            this.Lbl_FechaFin.Size = new System.Drawing.Size(89, 20);
+            this.Lbl_FechaFin.TabIndex = 2;
+            this.Lbl_FechaFin.Text = "Fecha Fin:";
+            // 
+            // Dtp_FechaFin
+            // 
+            this.Dtp_FechaFin.Location = new System.Drawing.Point(540, 50);
+            this.Dtp_FechaFin.Name = "Dtp_FechaFin";
+            this.Dtp_FechaFin.Size = new System.Drawing.Size(250, 27);
+            this.Dtp_FechaFin.TabIndex = 3;
             // 
             // Btn_Buscar
             // 
-            this.Btn_Buscar.Location = new System.Drawing.Point(921, 48);
-            this.Btn_Buscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Buscar.Location = new System.Drawing.Point(810, 40);
             this.Btn_Buscar.Name = "Btn_Buscar";
-            this.Btn_Buscar.Size = new System.Drawing.Size(150, 41);
-            this.Btn_Buscar.TabIndex = 5;
+            this.Btn_Buscar.Size = new System.Drawing.Size(100, 40);
+            this.Btn_Buscar.TabIndex = 4;
             this.Btn_Buscar.Text = "Buscar";
             this.Btn_Buscar.UseVisualStyleBackColor = true;
+            this.Btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
+            // 
+            // Btn_Limpiar
+            // 
+            this.Btn_Limpiar.Location = new System.Drawing.Point(920, 40);
+            this.Btn_Limpiar.Name = "Btn_Limpiar";
+            this.Btn_Limpiar.Size = new System.Drawing.Size(100, 40);
+            this.Btn_Limpiar.TabIndex = 5;
+            this.Btn_Limpiar.Text = "Limpiar";
+            this.Btn_Limpiar.UseVisualStyleBackColor = true;
+            this.Btn_Limpiar.Click += new System.EventHandler(this.Btn_Limpiar_Click);
             // 
             // Dtp_Filtro
             // 
-            this.Dtp_Filtro.Location = new System.Drawing.Point(595, 48);
-            this.Dtp_Filtro.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Dtp_Filtro.Location = new System.Drawing.Point(496, 44);
+            this.Dtp_Filtro.Margin = new System.Windows.Forms.Padding(4);
             this.Dtp_Filtro.Name = "Dtp_Filtro";
-            this.Dtp_Filtro.Size = new System.Drawing.Size(298, 27);
+            this.Dtp_Filtro.Size = new System.Drawing.Size(249, 22);
             this.Dtp_Filtro.TabIndex = 4;
             // 
             // Lbl_FechaFiltro
             // 
             this.Lbl_FechaFiltro.AutoSize = true;
-            this.Lbl_FechaFiltro.Location = new System.Drawing.Point(366, 55);
-            this.Lbl_FechaFiltro.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_FechaFiltro.Location = new System.Drawing.Point(305, 50);
+            this.Lbl_FechaFiltro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_FechaFiltro.Name = "Lbl_FechaFiltro";
             this.Lbl_FechaFiltro.Size = new System.Drawing.Size(147, 20);
             this.Lbl_FechaFiltro.TabIndex = 3;
@@ -115,10 +148,10 @@ namespace Capa_Vista_Compras
             // Rdb_Mes
             // 
             this.Rdb_Mes.AutoSize = true;
-            this.Rdb_Mes.Location = new System.Drawing.Point(262, 52);
-            this.Rdb_Mes.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Rdb_Mes.Location = new System.Drawing.Point(218, 47);
+            this.Rdb_Mes.Margin = new System.Windows.Forms.Padding(4);
             this.Rdb_Mes.Name = "Rdb_Mes";
-            this.Rdb_Mes.Size = new System.Drawing.Size(94, 33);
+            this.Rdb_Mes.Size = new System.Drawing.Size(52, 22);
             this.Rdb_Mes.TabIndex = 2;
             this.Rdb_Mes.Text = "Mes";
             this.Rdb_Mes.UseVisualStyleBackColor = true;
@@ -127,10 +160,10 @@ namespace Capa_Vista_Compras
             // 
             this.Rdb_Dia.AutoSize = true;
             this.Rdb_Dia.Checked = true;
-            this.Rdb_Dia.Location = new System.Drawing.Point(170, 52);
-            this.Rdb_Dia.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Rdb_Dia.Location = new System.Drawing.Point(142, 47);
+            this.Rdb_Dia.Margin = new System.Windows.Forms.Padding(4);
             this.Rdb_Dia.Name = "Rdb_Dia";
-            this.Rdb_Dia.Size = new System.Drawing.Size(84, 33);
+            this.Rdb_Dia.Size = new System.Drawing.Size(47, 22);
             this.Rdb_Dia.TabIndex = 1;
             this.Rdb_Dia.TabStop = true;
             this.Rdb_Dia.Text = "Dia";
@@ -139,8 +172,8 @@ namespace Capa_Vista_Compras
             // Lbl_TituloFiltro
             // 
             this.Lbl_TituloFiltro.AutoSize = true;
-            this.Lbl_TituloFiltro.Location = new System.Drawing.Point(30, 55);
-            this.Lbl_TituloFiltro.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_TituloFiltro.Location = new System.Drawing.Point(25, 50);
+            this.Lbl_TituloFiltro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_TituloFiltro.Name = "Lbl_TituloFiltro";
             this.Lbl_TituloFiltro.Size = new System.Drawing.Size(92, 20);
             this.Lbl_TituloFiltro.TabIndex = 0;
@@ -150,11 +183,11 @@ namespace Capa_Vista_Compras
             // 
             this.Gpb_Listado.Controls.Add(this.Dgv_Compras);
             this.Gpb_Listado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Listado.Location = new System.Drawing.Point(30, 193);
-            this.Gpb_Listado.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Gpb_Listado.Location = new System.Drawing.Point(25, 175);
+            this.Gpb_Listado.Margin = new System.Windows.Forms.Padding(4);
             this.Gpb_Listado.Name = "Gpb_Listado";
-            this.Gpb_Listado.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Gpb_Listado.Size = new System.Drawing.Size(1245, 385);
+            this.Gpb_Listado.Padding = new System.Windows.Forms.Padding(4);
+            this.Gpb_Listado.Size = new System.Drawing.Size(1037, 350);
             this.Gpb_Listado.TabIndex = 1;
             this.Gpb_Listado.TabStop = false;
             this.Gpb_Listado.Text = "Listado de Compras";
@@ -170,14 +203,14 @@ namespace Capa_Vista_Compras
             this.fecha,
             this.total,
             this.estado});
-            this.Dgv_Compras.Location = new System.Drawing.Point(30, 41);
-            this.Dgv_Compras.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Dgv_Compras.Location = new System.Drawing.Point(25, 37);
+            this.Dgv_Compras.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv_Compras.Name = "Dgv_Compras";
             this.Dgv_Compras.ReadOnly = true;
             this.Dgv_Compras.RowHeadersWidth = 51;
             this.Dgv_Compras.RowTemplate.Height = 24;
             this.Dgv_Compras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_Compras.Size = new System.Drawing.Size(1185, 303);
+            this.Dgv_Compras.Size = new System.Drawing.Size(987, 275);
             this.Dgv_Compras.TabIndex = 0;
             // 
             // id_compra
@@ -222,47 +255,47 @@ namespace Capa_Vista_Compras
             this.Pnl_Acciones.Controls.Add(this.Txt_TotalCompras);
             this.Pnl_Acciones.Controls.Add(this.Lbl_TotalCompras);
             this.Pnl_Acciones.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pnl_Acciones.Location = new System.Drawing.Point(30, 605);
-            this.Pnl_Acciones.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Pnl_Acciones.Location = new System.Drawing.Point(25, 550);
+            this.Pnl_Acciones.Margin = new System.Windows.Forms.Padding(4);
             this.Pnl_Acciones.Name = "Pnl_Acciones";
-            this.Pnl_Acciones.Size = new System.Drawing.Size(1245, 110);
+            this.Pnl_Acciones.Size = new System.Drawing.Size(1037, 100);
             this.Pnl_Acciones.TabIndex = 2;
             // 
             // Btn_Cerrar
             // 
-            this.Btn_Cerrar.Location = new System.Drawing.Point(694, 27);
-            this.Btn_Cerrar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Cerrar.Location = new System.Drawing.Point(578, 25);
+            this.Btn_Cerrar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Cerrar.Name = "Btn_Cerrar";
-            this.Btn_Cerrar.Size = new System.Drawing.Size(150, 41);
+            this.Btn_Cerrar.Size = new System.Drawing.Size(125, 37);
             this.Btn_Cerrar.TabIndex = 3;
             this.Btn_Cerrar.Text = "Cerrar";
             this.Btn_Cerrar.UseVisualStyleBackColor = true;
             // 
             // Btn_Exportar
             // 
-            this.Btn_Exportar.Location = new System.Drawing.Point(450, 27);
-            this.Btn_Exportar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Btn_Exportar.Location = new System.Drawing.Point(375, 25);
+            this.Btn_Exportar.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Exportar.Name = "Btn_Exportar";
-            this.Btn_Exportar.Size = new System.Drawing.Size(235, 41);
+            this.Btn_Exportar.Size = new System.Drawing.Size(196, 37);
             this.Btn_Exportar.TabIndex = 2;
             this.Btn_Exportar.Text = "Exportar Reporte";
             this.Btn_Exportar.UseVisualStyleBackColor = true;
             // 
             // Txt_TotalCompras
             // 
-            this.Txt_TotalCompras.Location = new System.Drawing.Point(261, 30);
-            this.Txt_TotalCompras.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Txt_TotalCompras.Location = new System.Drawing.Point(217, 27);
+            this.Txt_TotalCompras.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_TotalCompras.Name = "Txt_TotalCompras";
             this.Txt_TotalCompras.ReadOnly = true;
-            this.Txt_TotalCompras.Size = new System.Drawing.Size(178, 27);
+            this.Txt_TotalCompras.Size = new System.Drawing.Size(149, 27);
             this.Txt_TotalCompras.TabIndex = 1;
             this.Txt_TotalCompras.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Lbl_TotalCompras
             // 
             this.Lbl_TotalCompras.AutoSize = true;
-            this.Lbl_TotalCompras.Location = new System.Drawing.Point(30, 34);
-            this.Lbl_TotalCompras.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Lbl_TotalCompras.Location = new System.Drawing.Point(25, 31);
+            this.Lbl_TotalCompras.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_TotalCompras.Name = "Lbl_TotalCompras";
             this.Lbl_TotalCompras.Size = new System.Drawing.Size(148, 20);
             this.Lbl_TotalCompras.TabIndex = 0;
@@ -270,20 +303,19 @@ namespace Capa_Vista_Compras
             // 
             // Frm_Compras_Periodo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1294, 807);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1078, 734);
             this.Controls.Add(this.Pnl_Acciones);
             this.Controls.Add(this.Gpb_Listado);
             this.Controls.Add(this.Gpb_Filtros);
-            this.Font = new System.Drawing.Font("Rockwell", 12F);
+            this.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Compras_Periodo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Compras_Periodo";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Gpb_Filtros.ResumeLayout(false);
             this.Gpb_Filtros.PerformLayout();
             this.Gpb_Listado.ResumeLayout(false);
@@ -316,5 +348,9 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Button Btn_Exportar;
         private System.Windows.Forms.TextBox Txt_TotalCompras;
         private System.Windows.Forms.Label Lbl_TotalCompras;
+        private System.Windows.Forms.Label Lbl_FechaInicio;
+        private System.Windows.Forms.Label Lbl_FechaFin;
+        private System.Windows.Forms.DateTimePicker Dtp_FechaInicio;
+        private System.Windows.Forms.DateTimePicker Dtp_FechaFin;
     }
 }
