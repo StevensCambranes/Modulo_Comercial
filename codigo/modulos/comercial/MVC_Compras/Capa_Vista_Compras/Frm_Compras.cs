@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Compras
 {
+    // hola
     public partial class Frm_Compras : Form
     {
         public Frm_Compras()
