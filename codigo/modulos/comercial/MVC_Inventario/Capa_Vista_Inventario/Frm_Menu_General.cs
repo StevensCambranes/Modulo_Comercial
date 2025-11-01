@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Capa_Vista_Facturas;
+using Capa_Vista_CxP;
+using Capa_Vista_CxC;
 
 namespace Capa_Vista_Inventario
 {
@@ -23,27 +26,33 @@ namespace Capa_Vista_Inventario
         {
             Frm_Inventario_Historico irInventario = new Frm_Inventario_Historico();
             irInventario.Show();
-            this.Hide();
         }
 
         private void cxCToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Nelson
+            // Nelson recibos
+            Frm_Recibos irCxP = new Frm_Recibos();
+            irCxP.Show();
+
         }
 
         private void cxPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Diego
+            // Diego Frm_CxP_Gestiòn
+            Frm_CxP_Gestiòn irCxC = new Frm_CxP_Gestiòn();
+            irCxC.Show();
         }
 
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Raul
+            // Raul Compras
         }
 
         private void ventasFacturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Juan Carlos
+            Frm_Venta irVenta = new Frm_Venta();
+            irVenta.Show();
         }
     }
 }
