@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Capa_Vista_Facturas;
 using Capa_Vista_CxP;
 using Capa_Vista_CxC;
-//using Capa_Vista_Compras;
+using Capa_Vista_Compras;
 
 namespace Capa_Vista_Inventario
 {
@@ -47,8 +47,8 @@ namespace Capa_Vista_Inventario
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Raul Compras
-            /*Frm_Compras irCompras = new Frm_Compras();
-            irCompras.Show();*/
+            Frm_Compras irCompras = new Frm_Compras();
+            irCompras.Show();
         }
 
         private void ventasFacturasToolStripMenuItem_Click(object sender, EventArgs e)
