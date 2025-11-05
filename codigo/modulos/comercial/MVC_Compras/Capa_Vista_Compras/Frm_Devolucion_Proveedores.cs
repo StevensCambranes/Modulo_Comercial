@@ -13,28 +13,23 @@ namespace Capa_Vista_Compras
 {
     public partial class Frm_Devolucion_Proveedores : Form
     {
-        private Cls_Controlador_Compras _controlador;
+        private Cls_Controlador_DevolucionProveedor controlador = new Cls_Controlador_DevolucionProveedor();
         public Frm_Devolucion_Proveedores()
         {
             InitializeComponent();
-            _controlador = new Cls_Controlador_Compras();
-
-            // Configuración inicial
-            this.Text = "Devolución a Proveedores";
-            Gpb_DatosNota.Text = "Datos de la Devolución";
-            Lbl_Monto.Text = "Monto devuelto";
-            Lbl_Motivo.Text = "Motivo de devolución";
-            Lbl_FacturaAfectada.Text = "Factura a devolver";
-            Lbl_Devolucion.Text = "Tipo devolución";
-
-            Dgv_DetalleDevolucion.CellEndEdit += Dgv_DetalleDevolucion_CellEndEdit;
-
-            Cbo_TipoDevolucion.Items.Clear();
-            Cbo_TipoDevolucion.Items.AddRange(new string[] { "Devolución total", "Devolución parcial" });
-
-            // Inicialización visual
+            CargarProveedores();
+            Cbo_TipoDevolucion.Items.AddRange(new string[] { "Devolucion Total", "Devolucion Parcial" });
             Txt_Monto.Text = "0.00";
         }
+
+        private void CargarProveedores()
+        {
+            Cbo_Proveedor.DataSource = controlador.ObtenerProveedores();
+            Cbo_Proveedor.DisplayMember = "Cmp_Nombre_Proveedor";
+            Cbo_Proveedor.ValueMember = "Cmp_Id_Proveedor";
+            Cbo_Proveedor.SelectedIndex = -1;
+        }
+
 
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
@@ -52,51 +47,66 @@ namespace Capa_Vista_Compras
 
         private void Cbo_Factura_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Cbo_Factura.SelectedIndex == -1) return;
+            if (Cbo_Factura.SelectedIndex == -1)
+                return;
 
-            string idFactura = Cbo_Factura.SelectedItem.ToString();
+            int idFactura;
+            if (Cbo_Factura.SelectedValue is DataRowView drv)
+                idFactura = Convert.ToInt32(drv["Cmp_Id_Factura_Proveedor"]);
+            else
+                idFactura = Convert.ToInt32(Cbo_Factura.SelectedValue);
 
-            // Simulación: obtener el total de la factura seleccionada
-            decimal totalFactura = _controlador.ObtenerTotalFactura(idFactura);
+            DataTable productos = controlador.ObtenerProductosDeFactura(idFactura);
 
-            Txt_Monto.Text = totalFactura.ToString("0.00");
-            MessageBox.Show($"Factura {idFactura} seleccionada. Monto total: Q{totalFactura:N2}",
-                "Factura seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Dgv_DetalleDevolucion.Rows.Clear();
+            foreach (DataRow row in productos.Rows)
+            {
+                int n = Dgv_DetalleDevolucion.Rows.Add();
+                Dgv_DetalleDevolucion.Rows[n].Cells["id_producto"].Value = row["ID"].ToString();
+                Dgv_DetalleDevolucion.Rows[n].Cells["producto"].Value = row["Producto"].ToString();
+                Dgv_DetalleDevolucion.Rows[n].Cells["preciounit"].Value = Convert.ToDecimal(row["Precio_Unitario"]).ToString("0.00");
+                Dgv_DetalleDevolucion.Rows[n].Cells["cantidad"].Value = row["Cantidad"].ToString();
+                Dgv_DetalleDevolucion.Rows[n].Cells["subtotal"].Value = Convert.ToDecimal(row["Subtotal"]).ToString("0.00");
+            }
 
-    }
+            // Recalcula el monto total de devolución
+            decimal total = productos.AsEnumerable().Sum(r => r.Field<decimal>("Subtotal"));
+            Txt_Monto.Text = total.ToString("0.00");
+
+        }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             // ================= GUARDAR DEVOLUCIÓN =================
-            // Validaciones
-            if (Cbo_Proveedor.SelectedIndex == -1)
+            if (Cbo_Proveedor.SelectedIndex == -1 || Cbo_Factura.SelectedIndex == -1 || Cbo_TipoDevolucion.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un proveedor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar proveedor, factura y tipo de devolución.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (Cbo_Factura.SelectedIndex == -1)
+            int idProveedor = Convert.ToInt32(Cbo_Proveedor.SelectedValue);
+            int idFactura = Convert.ToInt32(Cbo_Factura.SelectedValue);
+            string tipo = Cbo_TipoDevolucion.Text;
+            DateTime fecha = Dtp_Fecha.Value;
+            string motivo = Txt_Motivo.Text;
+            decimal monto = Convert.ToDecimal(Txt_Monto.Text);
+            int idUsuario = 1; // Usuario temporal
+
+            int idDevolucion = controlador.GuardarDevolucion(idProveedor, idFactura, tipo, fecha, motivo, monto, idUsuario);
+
+            foreach (DataGridViewRow fila in Dgv_DetalleDevolucion.Rows)
             {
-                MessageBox.Show("Debe seleccionar una factura para devolver.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                int idProducto = Convert.ToInt32(fila.Cells["id_producto"].Value);
+                decimal cantidad = Convert.ToDecimal(fila.Cells["cantidad"].Value);
+                decimal precio = Convert.ToDecimal(fila.Cells["preciounit"].Value);
+                controlador.GuardarDetalleYActualizarInventario(idDevolucion, idProducto, cantidad, precio);
             }
 
-            if (!decimal.TryParse(Txt_Monto.Text, out decimal monto) || monto <= 0)
-            {
-                MessageBox.Show("Monto inválido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(Txt_Motivo.Text))
-            {
-                MessageBox.Show("Debe especificar el motivo de la devolución.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            MessageBox.Show("Devolución guardada correctamente y existencias actualizadas.",
+                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             CambiarModoEdicion(false);
-
-            MessageBox.Show("Devolución registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-    }
+        }
 
         private void Btn_Editar_Click(object sender, EventArgs e)
         {
@@ -215,6 +225,23 @@ namespace Capa_Vista_Compras
                     total += sub;
             }
             Txt_Monto.Text = total.ToString("0.00");
+        }
+
+        private void Cbo_Proveedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Cbo_Proveedor.SelectedIndex == -1)
+                return;
+
+            int idProveedor;
+            if (Cbo_Proveedor.SelectedValue is DataRowView drv)
+                idProveedor = Convert.ToInt32(drv["Cmp_Id_Proveedor"]);
+            else
+                idProveedor = Convert.ToInt32(Cbo_Proveedor.SelectedValue);
+
+            Cbo_Factura.DataSource = controlador.ObtenerFacturasPorProveedor(idProveedor);
+            Cbo_Factura.DisplayMember = "Cmp_Numero_Factura";
+            Cbo_Factura.ValueMember = "Cmp_Id_Factura_Proveedor";
+            Cbo_Factura.SelectedIndex = -1;
         }
     }
 }

@@ -45,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Controlador_Compras.cs" />
+    <Compile Include="Cls_Controlador_DevolucionProveedor.cs" />
     <Compile Include="Cls_Controlador_EnvioContabilidad.cs" />
+    <Compile Include="Cls_Controlador_FacturaProveedor.cs" />
+    <Compile Include="Cls_Controlador_OrdenCompra.cs" />
     <Compile Include="Cls_Controlador_Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

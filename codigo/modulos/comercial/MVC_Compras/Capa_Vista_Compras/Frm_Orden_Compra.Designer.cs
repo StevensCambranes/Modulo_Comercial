@@ -38,15 +38,12 @@ namespace Capa_Vista_Compras
             this.Lbl_Estado = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Lbl_Proveedor = new System.Windows.Forms.Label();
+            this.Lbl_CondicionPago = new System.Windows.Forms.Label();
+            this.Cbo_CondicionPago = new System.Windows.Forms.ComboBox();
             this.Gpb_Detalle = new System.Windows.Forms.GroupBox();
             this.Btn_EliminarProduc = new System.Windows.Forms.Button();
             this.Btn_AgregarProduc = new System.Windows.Forms.Button();
             this.Dgv_Detalle = new System.Windows.Forms.DataGridView();
-            this.id_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pnl_Aplicaciones = new System.Windows.Forms.Panel();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Btn_Aprobar = new System.Windows.Forms.Button();
@@ -54,6 +51,11 @@ namespace Capa_Vista_Compras
             this.Btn_Editar = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
+            this.id_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gpb_Datos_Orden.SuspendLayout();
             this.Gpb_Detalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).BeginInit();
@@ -106,6 +108,8 @@ namespace Capa_Vista_Compras
             this.Gpb_Datos_Orden.Controls.Add(this.Txt_Total);
             this.Gpb_Datos_Orden.Controls.Add(this.Dtp_Fecha);
             this.Gpb_Datos_Orden.Controls.Add(this.Txt_Estado);
+            this.Gpb_Datos_Orden.Controls.Add(this.Lbl_CondicionPago);
+            this.Gpb_Datos_Orden.Controls.Add(this.Cbo_CondicionPago);
             this.Gpb_Datos_Orden.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gpb_Datos_Orden.Location = new System.Drawing.Point(24, 25);
             this.Gpb_Datos_Orden.Margin = new System.Windows.Forms.Padding(4);
@@ -155,6 +159,25 @@ namespace Capa_Vista_Compras
             this.Lbl_Proveedor.Size = new System.Drawing.Size(92, 20);
             this.Lbl_Proveedor.TabIndex = 4;
             this.Lbl_Proveedor.Text = "Proveedor";
+            // 
+            // Lbl_CondicionPago
+            // 
+            this.Lbl_CondicionPago.AutoSize = true;
+            this.Lbl_CondicionPago.Location = new System.Drawing.Point(660, 84);
+            this.Lbl_CondicionPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_CondicionPago.Name = "Lbl_CondicionPago";
+            this.Lbl_CondicionPago.Size = new System.Drawing.Size(158, 20);
+            this.Lbl_CondicionPago.TabIndex = 8;
+            this.Lbl_CondicionPago.Text = "Condición de Pago";
+            // 
+            // Cbo_CondicionPago
+            // 
+            this.Cbo_CondicionPago.FormattingEnabled = true;
+            this.Cbo_CondicionPago.Location = new System.Drawing.Point(819, 80);
+            this.Cbo_CondicionPago.Margin = new System.Windows.Forms.Padding(4);
+            this.Cbo_CondicionPago.Name = "Cbo_CondicionPago";
+            this.Cbo_CondicionPago.Size = new System.Drawing.Size(189, 28);
+            this.Cbo_CondicionPago.TabIndex = 9;
             // 
             // Gpb_Detalle
             // 
@@ -211,37 +234,6 @@ namespace Capa_Vista_Compras
             this.Dgv_Detalle.RowTemplate.Height = 24;
             this.Dgv_Detalle.Size = new System.Drawing.Size(973, 249);
             this.Dgv_Detalle.TabIndex = 0;
-            // 
-            // id_producto
-            // 
-            this.id_producto.HeaderText = "ID";
-            this.id_producto.MinimumWidth = 6;
-            this.id_producto.Name = "id_producto";
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.MinimumWidth = 6;
-            this.producto.Name = "producto";
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.MinimumWidth = 6;
-            this.cantidad.Name = "cantidad";
-            // 
-            // precio_unit
-            // 
-            this.precio_unit.HeaderText = "Precio Unitario";
-            this.precio_unit.MinimumWidth = 6;
-            this.precio_unit.Name = "precio_unit";
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Subtotal";
-            this.subtotal.MinimumWidth = 6;
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
             // 
             // Pnl_Aplicaciones
             // 
@@ -324,6 +316,39 @@ namespace Capa_Vista_Compras
             this.Btn_Nuevo.UseVisualStyleBackColor = true;
             this.Btn_Nuevo.Click += new System.EventHandler(this.Btn_Nuevo_Click);
             // 
+            // id_producto
+            // 
+            this.id_producto.HeaderText = "ID";
+            this.id_producto.MinimumWidth = 6;
+            this.id_producto.Name = "id_producto";
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.MinimumWidth = 6;
+            this.producto.Name = "producto";
+            this.producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.producto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.MinimumWidth = 6;
+            this.cantidad.Name = "cantidad";
+            // 
+            // precio_unit
+            // 
+            this.precio_unit.HeaderText = "Precio Unitario";
+            this.precio_unit.MinimumWidth = 6;
+            this.precio_unit.Name = "precio_unit";
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.MinimumWidth = 6;
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            // 
             // Frm_Orden_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -362,11 +387,6 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.GroupBox Gpb_Detalle;
         private System.Windows.Forms.DataGridView Dgv_Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_producto;
-        private System.Windows.Forms.DataGridViewComboBoxColumn producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio_unit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.Button Btn_EliminarProduc;
         private System.Windows.Forms.Button Btn_AgregarProduc;
         private System.Windows.Forms.Panel Pnl_Aplicaciones;
@@ -376,5 +396,12 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Button Btn_Editar;
         private System.Windows.Forms.Button Btn_Guardar;
         private System.Windows.Forms.Button Btn_Nuevo;
+        private System.Windows.Forms.ComboBox Cbo_CondicionPago;
+        private System.Windows.Forms.Label Lbl_CondicionPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio_unit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
     }
 }

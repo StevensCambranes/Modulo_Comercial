@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_Modelo_DevolucionProveedor.cs" />
     <Compile Include="Cls_Modelo_EnvioContabilidad.cs" />
+    <Compile Include="Cls_Modelo_FacturaProveedor.cs" />
     <Compile Include="Cls_Modelo_OrdenCompra.cs" />
     <Compile Include="Cls_Modelo_Proveedor.cs" />
     <Compile Include="Cls_Sentencias_SQL.cs" />

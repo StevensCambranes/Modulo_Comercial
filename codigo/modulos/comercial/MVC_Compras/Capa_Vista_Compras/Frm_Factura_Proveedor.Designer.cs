@@ -44,17 +44,17 @@ namespace Capa_Vista_Compras
             this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Agregar = new System.Windows.Forms.Button();
             this.Dgv_DetalleFactura = new System.Windows.Forms.DataGridView();
-            this.id_prducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preciounit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pnl_AccionesFactura = new System.Windows.Forms.Panel();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Btn_Anular = new System.Windows.Forms.Button();
             this.Btn_Editar = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
+            this.id_prducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preciounit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gpb_DatosFactura.SuspendLayout();
             this.Gpb_DetalleFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_DetalleFactura)).BeginInit();
@@ -234,38 +234,6 @@ namespace Capa_Vista_Compras
             this.Dgv_DetalleFactura.Size = new System.Drawing.Size(988, 250);
             this.Dgv_DetalleFactura.TabIndex = 0;
             // 
-            // id_prducto
-            // 
-            this.id_prducto.HeaderText = "ID";
-            this.id_prducto.MinimumWidth = 6;
-            this.id_prducto.Name = "id_prducto";
-            this.id_prducto.ReadOnly = true;
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.MinimumWidth = 6;
-            this.producto.Name = "producto";
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.MinimumWidth = 6;
-            this.cantidad.Name = "cantidad";
-            // 
-            // preciounit
-            // 
-            this.preciounit.HeaderText = "Precio Unitario";
-            this.preciounit.MinimumWidth = 6;
-            this.preciounit.Name = "preciounit";
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Subtotal";
-            this.subtotal.MinimumWidth = 6;
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            // 
             // Pnl_AccionesFactura
             // 
             this.Pnl_AccionesFactura.Controls.Add(this.Btn_Cancelar);
@@ -335,6 +303,39 @@ namespace Capa_Vista_Compras
             this.Btn_Nuevo.UseVisualStyleBackColor = true;
             this.Btn_Nuevo.Click += new System.EventHandler(this.Btn_Nuevo_Click);
             // 
+            // id_prducto
+            // 
+            this.id_prducto.HeaderText = "ID";
+            this.id_prducto.MinimumWidth = 6;
+            this.id_prducto.Name = "id_prducto";
+            this.id_prducto.ReadOnly = true;
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.MinimumWidth = 6;
+            this.producto.Name = "producto";
+            this.producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.MinimumWidth = 6;
+            this.cantidad.Name = "cantidad";
+            // 
+            // preciounit
+            // 
+            this.preciounit.HeaderText = "Precio Unitario";
+            this.preciounit.MinimumWidth = 6;
+            this.preciounit.Name = "preciounit";
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.MinimumWidth = 6;
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            // 
             // Frm_Factura_Proveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -374,11 +375,6 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Label Lbl_NumeroFactura;
         private System.Windows.Forms.GroupBox Gpb_DetalleFactura;
         private System.Windows.Forms.DataGridView Dgv_DetalleFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_prducto;
-        private System.Windows.Forms.DataGridViewComboBoxColumn producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preciounit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.Button Btn_Agregar;
         private System.Windows.Forms.Panel Pnl_AccionesFactura;
@@ -387,5 +383,10 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Button Btn_Editar;
         private System.Windows.Forms.Button Btn_Anular;
         private System.Windows.Forms.Button Btn_Cancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_prducto;
+        private System.Windows.Forms.DataGridViewComboBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preciounit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
     }
 }

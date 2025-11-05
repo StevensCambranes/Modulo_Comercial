@@ -13,17 +13,30 @@ namespace Capa_Vista_Compras
 {
     public partial class Frm_Factura_Proveedor : Form
     {
-        private Cls_Controlador_Compras _controlador;
+        private Cls_Controlador_FacturaProveedor controlador = new Cls_Controlador_FacturaProveedor();
         public Frm_Factura_Proveedor()
         {
             InitializeComponent();
-            _controlador = new Cls_Controlador_Compras();
-
-            // Estado inicial
+            controlador = new Cls_Controlador_FacturaProveedor();
+            CargarProveedores();
+            CargarOrdenesCompra();
             Txt_TotalFactura.Text = "0.00";
-            //al combobox de orden de compra eliminar luego con bd
-            Cbo_OrdenCompra.SelectedIndexChanged += Cbo_OrdenCompra_SelectedIndexChanged;
-            Cbo_OrdenCompra.Items.AddRange(new string[] { "OC001", "OC002", "OC003" });
+        }
+
+        private void CargarProveedores()
+        {
+            Cbo_Proveedor.DataSource = controlador.ObtenerProveedores();
+            Cbo_Proveedor.DisplayMember = "Cmp_Nombre_Proveedor";
+            Cbo_Proveedor.ValueMember = "Cmp_Id_Proveedor";
+            Cbo_Proveedor.SelectedIndex = -1;
+        }
+
+        private void CargarOrdenesCompra()
+        {
+            Cbo_OrdenCompra.DataSource = controlador.ObtenerOrdenesCompra();
+            Cbo_OrdenCompra.DisplayMember = "Numero_OC";
+            Cbo_OrdenCompra.ValueMember = "Cmp_Id_OC";
+            Cbo_OrdenCompra.SelectedIndex = -1;
         }
 
         private void Btn_Nuevo_Click(object sender, EventArgs e)
@@ -62,7 +75,7 @@ namespace Capa_Vista_Compras
                 return;
             }
 
-            if (!int.TryParse(strCantidad, out int cantidad) || cantidad <= 0)
+            if (!decimal.TryParse(strCantidad, out decimal cantidad) || cantidad <= 0)
             {
                 MessageBox.Show("Cantidad inválida.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -74,14 +87,12 @@ namespace Capa_Vista_Compras
                 return;
             }
 
-            var datos = _controlador.AgregarLinea(id, producto, cantidad, precioUnitario);
-            fila.Cells["subtotal"].Value = datos.subtotal.ToString("0.00");
+            decimal subtotal = cantidad * precioUnitario;
+            fila.Cells["subtotal"].Value = subtotal.ToString("0.00");
 
-            Txt_TotalFactura.Text = _controlador.CalcularTotal().ToString("0.00");
+            CalcularTotalFactura();
 
-            MessageBox.Show("Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-    }
+        }
 
         private void Btn_Eliminar_Click(object sender, EventArgs e)
         {
@@ -92,36 +103,70 @@ namespace Capa_Vista_Compras
                 return;
             }
 
-            int rowIndex = Dgv_DetalleFactura.CurrentRow.Index;
-            _controlador.QuitarLinea(rowIndex);
-            Dgv_DetalleFactura.Rows.RemoveAt(rowIndex);
-            Txt_TotalFactura.Text = _controlador.CalcularTotal().ToString("0.00");
-    }
+            Dgv_DetalleFactura.Rows.Remove(Dgv_DetalleFactura.CurrentRow);
+            CalcularTotalFactura();
+        }
+
+        private void CalcularTotalFactura()
+        {
+            decimal total = 0;
+            foreach (DataGridViewRow fila in Dgv_DetalleFactura.Rows)
+            {
+                if (fila.Cells["subtotal"].Value != null &&
+                    decimal.TryParse(fila.Cells["subtotal"].Value.ToString(), out decimal sub))
+                {
+                    total += sub;
+                }
+            }
+            Txt_TotalFactura.Text = total.ToString("0.00");
+        }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
-            // ================= GUARDAR FACTURA =================
             if (Cbo_Proveedor.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un proveedor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un proveedor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (string.IsNullOrEmpty(Txt_Numerofactura.Text.Trim()))
+            if (string.IsNullOrEmpty(Txt_Numerofactura.Text))
             {
-                MessageBox.Show("Debe ingresar el número de factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese el número de factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (Dgv_DetalleFactura.Rows.Count == 0)
             {
-                MessageBox.Show("Debe agregar al menos un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Agregue productos antes de guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            CambiarModoEdicion(false);
-            MessageBox.Show("Factura registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-    }
+            int idProveedor = Convert.ToInt32(Cbo_Proveedor.SelectedValue);
+            DateTime fecha = Dtp_FechaFactura.Value;
+            string numero = Txt_Numerofactura.Text;
+            decimal total = Convert.ToDecimal(Txt_TotalFactura.Text);
+            int idUsuario = 1; // temporal (se puede pasar luego el usuario actual)
+
+            try
+            {
+                int idFactura = controlador.GuardarFactura(idProveedor, fecha, numero, total, idUsuario);
+
+                foreach (DataGridViewRow fila in Dgv_DetalleFactura.Rows)
+                {
+                    int idProducto = Convert.ToInt32(fila.Cells["id_prducto"].Value);
+                    decimal cantidad = Convert.ToDecimal(fila.Cells["cantidad"].Value);
+                    decimal precio = Convert.ToDecimal(fila.Cells["preciounit"].Value);
+                    controlador.GuardarDetalleFactura(idFactura, idProducto, cantidad, precio);
+                }
+
+                MessageBox.Show("Factura registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CambiarModoEdicion(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void Btn_Editar_Click(object sender, EventArgs e)
         {
@@ -130,7 +175,6 @@ namespace Capa_Vista_Compras
             if (confirmar == DialogResult.Yes)
             {
                 CambiarModoEdicion(true);
-                MessageBox.Show("Edición habilitada.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -141,7 +185,6 @@ namespace Capa_Vista_Compras
             if (confirmar == DialogResult.Yes)
             {
                 CambiarModoEdicion(false);
-                MessageBox.Show("Factura anulada correctamente.", "Anulada", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -167,36 +210,39 @@ namespace Capa_Vista_Compras
 
         private void Cbo_OrdenCompra_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Cuando cambia la orden de compra seleccionada
             if (Cbo_OrdenCompra.SelectedIndex == -1)
                 return;
 
-            string idOrden = Cbo_OrdenCompra.SelectedItem.ToString();
+            int idOrden;
 
-            // Obtener productos de la orden seleccionada
-            var productos = _controlador.ObtenerProductosPorOrden(idOrden);
+            // Manejar DataRowView o int
+            if (Cbo_OrdenCompra.SelectedValue is DataRowView drv)
+                idOrden = Convert.ToInt32(drv["Cmp_Id_OC"]);
+            else
+                idOrden = Convert.ToInt32(Cbo_OrdenCompra.SelectedValue);
 
-            // Limpiar detalle actual
+            DataTable productos = controlador.ObtenerProductosPorOrden(idOrden);
+            DataTable listaProductos = controlador.ObtenerTodosLosProductos();
+
+            DataGridViewComboBoxColumn comboProd = (DataGridViewComboBoxColumn)Dgv_DetalleFactura.Columns["producto"];
+            comboProd.DataSource = listaProductos;
+            comboProd.DisplayMember = "Producto";
+            comboProd.ValueMember = "ID";
+            comboProd.FlatStyle = FlatStyle.Flat;
+
             Dgv_DetalleFactura.Rows.Clear();
 
-            foreach (var p in productos)
+            foreach (DataRow row in productos.Rows)
             {
-                if (p.id != "—")
-                {
-                    int n = Dgv_DetalleFactura.Rows.Add();
-                    Dgv_DetalleFactura.Rows[n].Cells["id_prducto"].Value = p.id;
-                    Dgv_DetalleFactura.Rows[n].Cells["producto"].Value = p.nombre;
-                    Dgv_DetalleFactura.Rows[n].Cells["cantidad"].Value = p.cantidad;
-                    Dgv_DetalleFactura.Rows[n].Cells["preciounit"].Value = p.precio.ToString("0.00");
-                    Dgv_DetalleFactura.Rows[n].Cells["subtotal"].Value = (p.cantidad * p.precio).ToString("0.00");
-                }
+                int n = Dgv_DetalleFactura.Rows.Add();
+                Dgv_DetalleFactura.Rows[n].Cells["id_prducto"].Value = row["ID"].ToString();
+                Dgv_DetalleFactura.Rows[n].Cells["producto"].Value = row["ID"];
+                Dgv_DetalleFactura.Rows[n].Cells["cantidad"].Value = row["Cantidad"].ToString();
+                Dgv_DetalleFactura.Rows[n].Cells["preciounit"].Value = Convert.ToDecimal(row["Precio_Unitario"]).ToString("0.00");
+                Dgv_DetalleFactura.Rows[n].Cells["subtotal"].Value = Convert.ToDecimal(row["Subtotal"]).ToString("0.00");
             }
 
-            // Calcular total general
-            Txt_TotalFactura.Text = _controlador.CalcularTotal().ToString("0.00");
-
-            MessageBox.Show("Productos cargados desde la orden de compra seleccionada.",
-                "Carga completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-    }
+            Txt_TotalFactura.Text = productos.AsEnumerable().Sum(r => r.Field<decimal>("Subtotal")).ToString("0.00");
+        }
     }
 }

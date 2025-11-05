@@ -53,7 +53,7 @@ namespace Capa_Vista_Compras
             this.Btn_Agregar = new System.Windows.Forms.Button();
             this.Dgv_DetalleDevolucion = new System.Windows.Forms.DataGridView();
             this.id_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preciounit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -190,6 +190,7 @@ namespace Capa_Vista_Compras
             this.Cbo_Proveedor.Name = "Cbo_Proveedor";
             this.Cbo_Proveedor.Size = new System.Drawing.Size(312, 28);
             this.Cbo_Proveedor.TabIndex = 8;
+            this.Cbo_Proveedor.SelectedIndexChanged += new System.EventHandler(this.Cbo_Proveedor_SelectedIndexChanged);
             // 
             // Lbl_Proveedor
             // 
@@ -333,6 +334,8 @@ namespace Capa_Vista_Compras
             this.producto.HeaderText = "Producto";
             this.producto.MinimumWidth = 6;
             this.producto.Name = "producto";
+            this.producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.producto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // cantidad
             // 
@@ -400,12 +403,12 @@ namespace Capa_Vista_Compras
         private System.Windows.Forms.Button Btn_Nuevo;
         private System.Windows.Forms.GroupBox Gpb_DetalleDevolucion;
         private System.Windows.Forms.DataGridView Dgv_DetalleDevolucion;
+        private System.Windows.Forms.Button Btn_Agregar;
+        private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_producto;
-        private System.Windows.Forms.DataGridViewComboBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn preciounit;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
-        private System.Windows.Forms.Button Btn_Agregar;
-        private System.Windows.Forms.Button Btn_Eliminar;
     }
 }
