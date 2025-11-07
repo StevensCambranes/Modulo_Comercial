@@ -7,10 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Controlador_Seguridad;
+using Capa_Controlador_Comercial;
 using Capa_Vista_Inventario;
+using Capa_Vista_Facturas;
+using Capa_Vista_CxP;
+using Capa_Vista_CxC;
+using Capa_Vista_Compras;
 
-namespace Capa_Vista_Seguridad
+namespace Capa_Vista_Comercial
 {
     public partial class Frm_Seguridad : Form
     {
@@ -41,8 +45,8 @@ namespace Capa_Vista_Seguridad
             this.Load += Frm_Seguridad_Load;
 
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Comercial.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Comercial.Cls_Usuario_Conectado.iIdPerfil
             );
 
             this.FormClosing += Frm_Seguridad_FormClosing;
@@ -50,13 +54,13 @@ namespace Capa_Vista_Seguridad
         private void Frm_Seguridad_Load(object sender, EventArgs e)
         {
             // Mostrar usuario conectado en StatusStrip
-            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Seguridad.Cls_Usuario_Conectado.sNombreUsuario}";
+            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Comercial.Cls_Usuario_Conectado.sNombreUsuario}";
 
             // El resto de tu código de carga...
             fun_inicializar_botones_por_defecto();
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Comercial.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Comercial.Cls_Usuario_Conectado.iIdPerfil
             );
         }
         private void Frm_Seguridad_FormClosing(object sender, FormClosingEventArgs e)
@@ -90,9 +94,9 @@ namespace Capa_Vista_Seguridad
                     case MenuOpciones.Herramientas:
                         menuItems[opcion].Enabled = true;
                         break;
-                    default:
+                    /*default:
                         menuItems[opcion].Enabled = false;
-                        break;
+                        break;*/
                 }
             }
         }
@@ -123,10 +127,10 @@ namespace Capa_Vista_Seguridad
                 {308, asignacionPerfilesToolStripMenuItem}
             };
 
-            // 1. DESHABILITA TODOS LOS SUBMENÚS ANTES DE HABILITAR PERMISOS
+            /*// 1. DESHABILITA TODOS LOS SUBMENÚS ANTES DE HABILITAR PERMISOS
             foreach (var sub in mapaCatalogos.Values) sub.Enabled = false;
             foreach (var sub in mapaProcesos.Values) sub.Enabled = false;
-            foreach (var sub in mapaAsignaciones.Values) sub.Enabled = false;
+            foreach (var sub in mapaAsignaciones.Values) sub.Enabled = false;*/
 
             // 2. Permisos por perfil (primer filtro)
             DataTable dtPermisosPerfil = controladorPermisosPerfil.datObtenerPermisosPorPerfil(iIdPerfil);
@@ -266,7 +270,7 @@ namespace Capa_Vista_Seguridad
         }
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_cambiar_contrasena ventana = new Frm_cambiar_contrasena(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario);
+            Frm_cambiar_contrasena ventana = new Frm_cambiar_contrasena(Capa_Controlador_Comercial.Cls_Usuario_Conectado.iIdUsuario);
             ventana.Show();
         }
         private void OpenFile(object sender, EventArgs e)
@@ -347,10 +351,40 @@ namespace Capa_Vista_Seguridad
             nav.ShowDialog();
         }
 
-        private void moduloComercialToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Menu_General irComercial = new Frm_Menu_General();
-            irComercial.Show();
+            // ====================
+            // Ir a inventario
+            Frm_Inventario_Historico irInventario = new Frm_Inventario_Historico();
+            irInventario.Show();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Raul Compras
+            Frm_Compras irCompras = new Frm_Compras();
+            irCompras.Show();
+        }
+
+        private void cuentasPorPagarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Diego Frm_CxP_Gestiòn
+            Frm_CxP_Gestiòn irCxP = new Frm_CxP_Gestiòn();
+            irCxP.Show();
+        }
+
+        private void ventasFacturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Juan Carlos
+            Frm_Venta irVenta = new Frm_Venta();
+            irVenta.Show();
+        }
+
+        private void cuentasPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Nelson recibos
+            Frm_Recibos irCxC = new Frm_Recibos();
+            irCxC.Show();
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{349D7BA8-A835-4401-B0B9-CA601B215E63}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Vista_Seguridad</RootNamespace>
-    <AssemblyName>Capa_Vista_Seguridad</AssemblyName>
+    <RootNamespace>Capa_Vista_Comercial</RootNamespace>
+    <AssemblyName>Capa_Vista_Comercial</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,17 +32,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="Capa_Controlador_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+    <Reference Include="Capa_Controlador_Comercial">
+      <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Comercial.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Controlador_Seguridad">
-      <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
+    <Reference Include="Capa_Controlador_Navegador">
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Compras, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MVC_Compras\Capa_Vista_Compras\bin\Debug\Capa_Vista_Compras.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CxC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MVC_CxC\Capa_Vista_CxC\bin\Debug\Capa_Vista_CxC.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CxP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MVC_CxP\Capa_Vista_CxP\bin\Debug\Capa_Vista_CxP.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Facturas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MVC_Facturas\Capa_Vista_Facturas\bin\Debug\Capa_Vista_Facturas.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Inventario">
-      <HintPath>..\..\..\..\..\modulos\comercial\MVC_Inventario\Capa_Vista_Inventario\bin\Debug\Capa_Vista_Inventario.dll</HintPath>
+      <HintPath>..\..\..\MVC_Inventario\Capa_Vista_Inventario\bin\Debug\Capa_Vista_Inventario.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -386,6 +402,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo Modulo Comercial.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo Empresa General.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
