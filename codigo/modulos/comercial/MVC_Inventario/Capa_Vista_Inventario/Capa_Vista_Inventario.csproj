@@ -37,6 +37,18 @@
     <Reference Include="Capa_Controlador_Inventario">
       <HintPath>..\Capa_Controlador_Inventario\bin\Debug\Capa_Controlador_Inventario.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Compras">
+      <HintPath>..\..\MVC_Compras\Capa_Vista_Compras\bin\Debug\Capa_Vista_Compras.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CxC">
+      <HintPath>..\..\MVC_CxC\Capa_Vista_CxC\bin\Debug\Capa_Vista_CxC.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CxP">
+      <HintPath>..\..\MVC_CxP\Capa_Vista_CxP\bin\Debug\Capa_Vista_CxP.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Facturas">
+      <HintPath>..\..\MVC_Facturas\Capa_Vista_Facturas\bin\Debug\Capa_Vista_Facturas.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>

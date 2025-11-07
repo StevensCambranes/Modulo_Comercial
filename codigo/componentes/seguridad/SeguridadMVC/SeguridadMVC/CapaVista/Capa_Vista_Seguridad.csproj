@@ -38,9 +38,6 @@
     <Reference Include="Capa_Controlador_Seguridad">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Inventario">
-      <HintPath>..\..\..\..\..\modulos\comercial\MVC_Inventario\Capa_Vista_Inventario\bin\Debug\Capa_Vista_Inventario.dll</HintPath>
-    </Reference>
     <Reference Include="Capa_Vista_Navegador">
       <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
     </Reference>

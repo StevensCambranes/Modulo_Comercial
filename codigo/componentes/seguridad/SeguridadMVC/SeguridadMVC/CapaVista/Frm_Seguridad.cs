@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
-using Capa_Vista_Inventario;
 
 namespace Capa_Vista_Seguridad
 {
@@ -345,12 +344,6 @@ namespace Capa_Vista_Seguridad
         {
             Frm_PruebaNavegador nav = new Frm_PruebaNavegador();
             nav.ShowDialog();
-        }
-
-        private void moduloComercialToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Menu_General irComercial = new Frm_Menu_General();
-            irComercial.Show();
         }
     }
 }
