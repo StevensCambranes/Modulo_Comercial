@@ -1,209 +1,163 @@
 ﻿using System;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using Capa_Controlador_Facturas;
-using System.ComponentModel;   // BindingList
 
 namespace Capa_Vista_Facturas
 {
+    // Juan Carlos Sandoval Quej 0901-22-4170 12/11/2025
     public partial class Frm_Venta : Form
     {
-        private readonly Cls_Controlador ctrl = new Cls_Controlador();
-        private DataTable productos;
-        private readonly CultureInfo gt = new CultureInfo("es-GT");
+        // Controlador general para manejar lógica y conexión
+        private readonly Cls_Controlador _ctrl = new Cls_Controlador();
 
+        // Tabla que contendrá los productos cargados desde la BD
+        private DataTable _productos;
+
+        // Cultura usada para manejar formato de decimales (Quetzales)
+        private readonly CultureInfo _gt = new CultureInfo("es-GT");
+
+        // Constructor: aquí se inicializan eventos y configuraciones iniciales
         public Frm_Venta()
         {
             InitializeComponent();
 
+            // Asociar eventos principales
             Load += Frm_Venta_Load;
             Cbo_Producto.SelectedIndexChanged += Cbo_Producto_SelectedIndexChanged;
             Btn_Agregar.Click += Btn_Agregar_Click;
             Btn_Eliminar.Click += Btn_Eliminar_Click;
-            Txt_Efectivo.TextChanged += Txt_Efectivo_TextChanged;
+            Txt_Efectivo.TextChanged += (s, e) => ActualizarTotales();
             Btn_Vender.Click += Btn_Vender_Click;
 
+            // Configurar el DataGridView de productos
             Dgv_Lista.AutoGenerateColumns = false;
-            Dgv_Lista.DataSource = ctrl.Lineas;
+            Dgv_Lista.DataSource = _ctrl.Lineas;
         }
 
+        // Evento que se ejecuta al cargar el formulario
         private void Frm_Venta_Load(object sender, EventArgs e)
         {
-            // Cargar productos
-            productos = ctrl.ObtenerProductos();
-            Cbo_Producto.DataSource = productos;
-            Cbo_Producto.DisplayMember = "Cmp_NombreProducto";
-            Cbo_Producto.ValueMember = "Cmp_CodigoProducto";
+            // Obtener productos desde la BD y cargarlos en el combo
+            _productos = _ctrl.ObtenerProductos();
+            Cbo_Producto.DataSource = _productos;
+            Cbo_Producto.DisplayMember = "Cmp_Nombre_Producto";  // lo que se ve
+            Cbo_Producto.ValueMember = "Cmp_Codigo_Producto";    // valor real
 
-            // columnas del DGV (enlaza a propiedades de Cls_LineaVenta)
+            // Vincular columnas del grid con las propiedades de las líneas
             if (Dgv_Lista.Columns.Count >= 5)
             {
                 Dgv_Lista.Columns[0].DataPropertyName = "Codigo";
                 Dgv_Lista.Columns[1].DataPropertyName = "Producto";
-                Dgv_Lista.Columns[2].DataPropertyName = "Precio";
-                Dgv_Lista.Columns[3].DataPropertyName = "Cantidad";
+                Dgv_Lista.Columns[2].DataPropertyName = "Cantidad";
+                Dgv_Lista.Columns[3].DataPropertyName = "Precio";
                 Dgv_Lista.Columns[4].DataPropertyName = "Total";
-                Dgv_Lista.Columns[4].ReadOnly = true;
-                Dgv_Lista.Columns[2].DefaultCellStyle.Format = "N2";
-                Dgv_Lista.Columns[4].DefaultCellStyle.Format = "N2";
+
+                Dgv_Lista.Columns[3].DefaultCellStyle.Format = "N2";  // formato de precio
+                Dgv_Lista.Columns[4].DefaultCellStyle.Format = "N2";  // formato de total
+                Dgv_Lista.Columns[4].ReadOnly = true;                 // no editable
             }
 
-            // Inicializar textos (títulos)
-            Lbl_Total.Text = "TOTAL A PAGAR:";
-            Lbl_Efectivo.Text = "EFECTIVO:";
-            Lbl_Devolucion.Text = "DEVOLUCIÓN:";
-
-            // Valores visibles
-            Lbl_IngresoCodigo.Text = "-";
-            Lbl_IngresoNombre.Text = "-";
-            Lbl_IngresoPrecio.Text = "-";
+            // Valores iniciales
             Lbl_TotalPagar.Text = "0.00";
             Lbl_IngresoDevolucion.Text = "0.00";
         }
 
+        // Cuando se selecciona un producto en el ComboBox
         private void Cbo_Producto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Cbo_Producto.SelectedItem is DataRowView drv)
             {
-                Lbl_IngresoCodigo.Text = drv["Cmp_CodigoProducto"].ToString();
-                Lbl_IngresoNombre.Text = drv["Cmp_NombreProducto"].ToString();
+                // Mostrar código, nombre y precio del producto seleccionado
+                Lbl_IngresoCodigo.Text = Convert.ToString(drv["Cmp_Codigo_Producto"]);
+                Lbl_IngresoNombre.Text = Convert.ToString(drv["Cmp_Nombre_Producto"]);
                 Lbl_IngresoPrecio.Text = Convert
                     .ToDecimal(drv["Cmp_PrecioUnitario"])
-                    .ToString("N2", gt);
+                    .ToString("N2", _gt);
             }
         }
 
+        // Botón AGREGAR: añade una línea de producto al detalle
         private void Btn_Agregar_Click(object sender, EventArgs e)
         {
-            string codigo = Lbl_IngresoCodigo.Text;
-            string nombre = Lbl_IngresoNombre.Text;
-
-            if (codigo == "-" || nombre == "-")
+            // Validar que haya un producto seleccionado
+            if (string.IsNullOrWhiteSpace(Lbl_IngresoCodigo.Text))
             {
-                MessageBox.Show("Selecciona un producto.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selecciona un producto.");
                 return;
             }
 
-            if (!decimal.TryParse(Lbl_IngresoPrecio.Text, NumberStyles.Any, gt, out decimal precio) &&
+            // Validar que la cantidad sea un número válido y mayor a 0
+            if (!int.TryParse(Txt_IngresoCantidad.Text, out var cant) || cant <= 0)
+            {
+                MessageBox.Show("Cantidad inválida.");
+                return;
+            }
+
+            // Validar precio correcto
+            if (!decimal.TryParse(Lbl_IngresoPrecio.Text, NumberStyles.Any, _gt, out var precio) &&
                 !decimal.TryParse(Lbl_IngresoPrecio.Text, out precio))
             {
-                MessageBox.Show("Precio inválido.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Precio inválido.");
                 return;
             }
 
-            if (!int.TryParse(Txt_IngresoCantidad.Text, out int cantidad) || cantidad <= 0)
-            {
-                MessageBox.Show("Cantidad inválida.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Agregar línea al controlador
+            _ctrl.AgregarLinea(Lbl_IngresoCodigo.Text, Lbl_IngresoNombre.Text, precio, cant);
 
-            ctrl.AgregarLinea(codigo, nombre, precio, cantidad);
-
+            // Limpiar entrada de cantidad
             Txt_IngresoCantidad.Clear();
             Txt_IngresoCantidad.Focus();
+
+            // Actualizar totales
             ActualizarTotales();
         }
 
+        // Botón ELIMINAR: quita una línea seleccionada del detalle
         private void Btn_Eliminar_Click(object sender, EventArgs e)
         {
             if (Dgv_Lista.CurrentRow == null) return;
 
-            var r = MessageBox.Show("¿Eliminar línea seleccionada?", "Eliminar",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (r == DialogResult.Yes)
+            if (MessageBox.Show("¿Eliminar línea seleccionada?", "Eliminar",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                ctrl.EliminarLinea(Dgv_Lista.CurrentRow.Index);
+                _ctrl.EliminarLinea(Dgv_Lista.CurrentRow.Index);
                 ActualizarTotales();
             }
         }
 
-        private void Txt_Efectivo_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarTotales();
-        }
-
+        // Calcula el total y la devolución en tiempo real
         private void ActualizarTotales()
         {
-            decimal total = ctrl.CalcularTotal();
-            Lbl_TotalPagar.Text = total.ToString("N2", gt);
+            var total = _ctrl.TotalVenta();
+            Lbl_TotalPagar.Text = total.ToString("N2", _gt);
 
-            if (decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, gt, out decimal efectivo) ||
+            // Si el efectivo ingresado es válido, calcular devolución
+            if (decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, _gt, out var efectivo) ||
                 decimal.TryParse(Txt_Efectivo.Text, out efectivo))
             {
-                var dev = ctrl.CalcularDevolucion(efectivo, total);
-                Lbl_IngresoDevolucion.Text = dev.ToString("N2", gt);
-                Lbl_IngresoDevolucion.ForeColor = (dev >= 0)
-                    ? System.Drawing.Color.ForestGreen
-                    : System.Drawing.Color.Firebrick;
+                var devolucion = _ctrl.Devolucion(efectivo);
+                Lbl_IngresoDevolucion.Text = devolucion.ToString("N2", _gt);
+
+                // Colorear según resultado
+                if (devolucion < 0)
+                    Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.Firebrick;   // rojo
+                else if (devolucion > 0)
+                    Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.ForestGreen; // verde
+                else
+                    Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.Black;       // exacto
             }
             else
             {
                 Lbl_IngresoDevolucion.Text = "0.00";
-                Lbl_IngresoDevolucion.ForeColor = System.Drawing.SystemColors.ControlText;
+                Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.Black;
             }
         }
 
-        private void Btn_Vender_Click(object sender, EventArgs e)
-        {
-            if (ctrl.Lineas.Count == 0)
-            {
-                MessageBox.Show("No hay productos para vender.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            // 1) Guardar SOLO la VENTA en BD
-            decimal efectivo = 0m;
-            decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, gt, out efectivo);
-            int idUsuario = 2;      // TODO: reemplazar por el usuario real
-            int idMetodoPago = 1;   // TODO: reemplazar por el método real
-
-            int idVenta;
-            try
-            {
-                idVenta = ctrl.GuardarVenta(efectivo, idUsuario, idMetodoPago);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar la venta:\n" + ex.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // 2) Preparar detalle y total para la factura (UI)
-            DataTable detalle = BuildDetalleFromLineas(ctrl.Lineas);
-            decimal total = ctrl.CalcularTotal();
-
-            // 3) Abrir formulario de factura (solo visualización/impresión)
-            var frm = new Frm_FacturaCrear
-            {
-                DetalleFactura = detalle,
-                Total = total
-            };
-            frm.Tag = idVenta;   // Pasamos el ID de la venta
-
-            var dr = frm.ShowDialog(this);
-
-            // 4) Si el usuario guardó la factura correctamente, limpiar la venta (UI)
-            if (dr == DialogResult.OK && frm.FacturaId != null)
-            {
-                MessageBox.Show($"Venta #{idVenta} finalizada. Factura #{frm.FacturaId}.",
-                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                ctrl.LimpiarLineas();
-                Dgv_Lista.Refresh();
-                Txt_Efectivo.Clear();
-                ActualizarTotales();
-            }
-        }
-
-
-        private static DataTable BuildDetalleFromLineas(
-            BindingList<Capa_Controlador_Facturas.Cls_Controlador.Cls_LineaVenta> lineas)
+        // Crea un DataTable con el detalle de venta para mandarlo a la factura
+        private DataTable BuildDetalle()
         {
             var dt = new DataTable();
             dt.Columns.Add("Codigo", typeof(string));
@@ -212,10 +166,148 @@ namespace Capa_Vista_Facturas
             dt.Columns.Add("Precio", typeof(decimal));
             dt.Columns.Add("Subtotal", typeof(decimal));
 
-            foreach (var l in lineas)
+            // Llenar con las líneas actuales
+            foreach (var l in _ctrl.Lineas)
                 dt.Rows.Add(l.Codigo, l.Producto, l.Cantidad, l.Precio, l.Total);
 
             return dt;
+        }
+
+        // Botón VENDER: valida, guarda venta y abre factura
+        private void Btn_Vender_Click(object sender, EventArgs e)
+        {
+            // ======= VALIDACIONES =======
+            if (_ctrl.Lineas.Count == 0)
+            {
+                MessageBox.Show("No hay productos agregados a la venta.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Revisar que todas las cantidades sean válidas
+            foreach (var linea in _ctrl.Lineas)
+            {
+                if (linea.Cantidad <= 0)
+                {
+                    MessageBox.Show($"La cantidad del producto '{linea.Producto}' es inválida.\nDebe ser mayor a 0.",
+                        "Cantidad inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // Validar efectivo ingresado
+            if (string.IsNullOrWhiteSpace(Txt_Efectivo.Text))
+            {
+                MessageBox.Show("Debe ingresar el efectivo recibido.",
+                    "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Txt_Efectivo.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(Txt_Efectivo.Text, out var efectivo))
+            {
+                MessageBox.Show("El valor ingresado en efectivo no es válido.",
+                    "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Txt_Efectivo.Focus();
+                return;
+            }
+
+            // Validar que el efectivo cubra el total
+            decimal total = _ctrl.TotalVenta();
+            if (efectivo < total)
+            {
+                MessageBox.Show($"El efectivo ingresado es insuficiente.\n\nTotal: Q{total:0.00}\nEfectivo: Q{efectivo:0.00}",
+                    "Efectivo insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Txt_Efectivo.Focus();
+                return;
+            }
+
+            // ======= GUARDAR VENTA =======
+            int? idUsuario = 2;    // temporal si no hay login
+            int? idMetodoPago = 1; // efectivo
+            int idVenta;
+
+            try
+            {
+                idVenta = _ctrl.GuardarVenta(efectivo, idUsuario, idMetodoPago);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la venta:\n\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // ======= CREAR FACTURA =======
+            var frmFact = new Frm_FacturaCrear
+            {
+                DetalleFactura = BuildDetalle(),
+                Total = total,
+                Tag = idVenta
+            };
+
+            // Manejar el evento al guardar factura (refresca automáticamente el listado)
+            frmFact.FacturaGuardada += (facturaId, totalFactura) =>
+            {
+                var listadoAbierto = Application.OpenForms.OfType<Frm_Listado_Facturas>().FirstOrDefault();
+                if (listadoAbierto == null)
+                {
+                    listadoAbierto = new Frm_Listado_Facturas();
+                    listadoAbierto.StartPosition = FormStartPosition.CenterParent;
+                    listadoAbierto.Show(this);
+                }
+                else
+                {
+                    listadoAbierto.BringToFront();
+                    listadoAbierto.Activate();
+                }
+                listadoAbierto.Recargar();
+                listadoAbierto.SelectFactura(facturaId);
+            };
+
+            // Mostrar el formulario de factura y esperar resultado
+            var dr = frmFact.ShowDialog(this);
+
+            if (dr == DialogResult.OK)
+            {
+                // ======= LIMPIAR INTERFAZ =======
+                _ctrl.Limpiar();
+                Dgv_Lista.Refresh();
+                Txt_Efectivo.Clear();
+                ActualizarTotales();
+
+                // ======= REFRESCAR LISTADO DE FACTURAS =======
+                var listado = Application.OpenForms.OfType<Frm_Listado_Facturas>().FirstOrDefault();
+                if (listado == null)
+                {
+                    listado = new Frm_Listado_Facturas();
+                    listado.StartPosition = FormStartPosition.CenterParent;
+                    listado.Show(this);
+                }
+                else
+                {
+                    listado.BringToFront();
+                }
+                listado.Recargar();
+            }
+        }
+
+        // Abre o trae al frente el listado de facturas desde el menú superior
+        private void listadoDeFacturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var listado = Application.OpenForms.OfType<Frm_Listado_Facturas>().FirstOrDefault();
+            if (listado == null)
+            {
+                listado = new Frm_Listado_Facturas();
+                listado.StartPosition = FormStartPosition.CenterParent;
+                listado.Show(this);
+            }
+            else
+            {
+                listado.BringToFront();
+                listado.Activate();
+            }
+            listado.Recargar();
         }
     }
 }
