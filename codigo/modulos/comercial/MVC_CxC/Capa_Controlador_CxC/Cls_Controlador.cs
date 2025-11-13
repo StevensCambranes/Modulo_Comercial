@@ -12,7 +12,6 @@ namespace Capa_Controlador_CxC
         // ==== REPO ====
         private readonly Cls_IRepositorioCxC _repo;
 
-        // Ajusta este new ... si tu clase repo tiene otro nombre
         public Cls_Controlador() : this(new Cls_RepositorioSqlCxC()) { }
         public Cls_Controlador(Cls_IRepositorioCxC repo) { _repo = repo; }
 
@@ -58,13 +57,30 @@ namespace Capa_Controlador_CxC
             return dt;
         }
 
+        // Antigüedad usando nombre de cliente (compatibilidad)
         public DataTable ObtenerAntiguedadDT(DateTime corte, string cli)
         {
-            throw new NotImplementedException();
+            int? idCliente = null;
+
+            if (!string.IsNullOrWhiteSpace(cli))
+            {
+                var dtCli = _repo.ClientesDT();
+                foreach (DataRow row in dtCli.Rows)
+                {
+                    string nombre = Convert.ToString(row["Cmp_Nombre_Cliente"]);
+                    if (string.Equals(nombre, cli, StringComparison.OrdinalIgnoreCase))
+                    {
+                        idCliente = Convert.ToInt32(row["Id_Cliente"]);
+                        break;
+                    }
+                }
+            }
+
+            return _repo.AntiguedadDT(corte, idCliente);
         }
 
         // =========================================================================================
-        //  BUFFER "APLICAR PAGO" (vive mientras viva esta instancia del controlador en el form)
+        //  BUFFER "APLICAR PAGO"
         // =========================================================================================
         private class PagoDetalleVM
         {
@@ -100,9 +116,14 @@ namespace Capa_Controlador_CxC
             return dt;
         }
 
+        // Crear recibo "simple" reutilizando la lógica de GuardarPagoAplicado
         public int CrearRecibo(DateTime date, string cliente, decimal monto, string text)
         {
-            throw new NotImplementedException();
+            if (_bufferPago.Count == 0)
+                throw new InvalidOperationException("No hay líneas de pago para crear el recibo.");
+
+            int idCliente = _bufferPago.First().IdCliente;
+            return GuardarPagoAplicado(date, idCliente, text);
         }
 
         public decimal TotalLineasPago()
@@ -134,9 +155,24 @@ namespace Capa_Controlador_CxC
             });
         }
 
+        // Versión antigua sin ids: solo agrega al buffer (no se recomienda usarla)
         public void AgregarLineaPago(string factura, string cliente, decimal saldo, decimal monto, string metodo, string referencia)
         {
-            throw new NotImplementedException();
+            if (monto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
+            if (monto > saldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
+
+            _bufferPago.Add(new PagoDetalleVM
+            {
+                Factura = factura ?? "",
+                Cliente = cliente ?? "",
+                Saldo = saldo,
+                Monto = monto,
+                Metodo = metodo ?? "",
+                Referencia = referencia ?? "",
+                IdMetodo = 0,
+                IdDocumento = 0,
+                IdCliente = 0
+            });
         }
 
         // Overload que usan a veces en la vista (sin 'referencia')
@@ -151,6 +187,7 @@ namespace Capa_Controlador_CxC
         {
             if (index < 0 || index >= _bufferPago.Count) throw new ArgumentOutOfRangeException("Índice inválido.");
             if (nuevoMonto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
+
             var row = _bufferPago[index];
             if (nuevoMonto > row.Saldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
 
@@ -160,9 +197,16 @@ namespace Capa_Controlador_CxC
             row.Referencia = referencia ?? "";
         }
 
+        // Editar encabezado de recibo (se actualiza fecha y observaciones)
         public void EditarRecibo(int id, DateTime date, string nuevoCliente, decimal nuevoMonto, string nuevasObs)
         {
-            throw new NotImplementedException();
+            var r = new Recibo
+            {
+                Id = id,
+                Fecha = date,
+                Observaciones = nuevasObs ?? ""
+            };
+            _repo.EditarRecibo(r);
         }
 
         // Overload de compatibilidad (firma que suele venir desde la Vista)
@@ -174,14 +218,25 @@ namespace Capa_Controlador_CxC
             EditarLineaPago(index, nuevoMonto, idMetodo, metodo, null);
         }
 
+        // Versión con "id" (lo tratamos como índice dentro del buffer)
         public void EditarLineaPago(int id, string factura, string cliente, decimal nSaldo, decimal nMonto, string metodo, string referencia)
         {
-            throw new NotImplementedException();
+            if (id < 0 || id >= _bufferPago.Count) throw new ArgumentOutOfRangeException("id");
+            if (nMonto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
+            if (nMonto > nSaldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
+
+            var row = _bufferPago[id];
+            row.Factura = factura ?? row.Factura;
+            row.Cliente = cliente ?? row.Cliente;
+            row.Saldo = nSaldo;
+            row.Monto = nMonto;
+            row.Metodo = metodo ?? row.Metodo;
+            row.Referencia = referencia ?? row.Referencia;
         }
 
         public void AnularRecibo(int id)
         {
-            throw new NotImplementedException();
+            _repo.AnularRecibo(id);
         }
 
         public void EliminarLineaPago(int index)
@@ -196,8 +251,8 @@ namespace Capa_Controlador_CxC
         }
 
         /// <summary>
-        /// Guarda el pago: crea RECIBO (Tbl_Recibo), inserta detalles (Tbl_Recibo_Det)
-        /// y aplica a documentos (Tbl_Recibo_Aplicacion).
+        /// Guarda el pago: crea RECIBO (tbl_recibo), inserta detalles (tbl_recibo_det)
+        /// y aplica a documentos (tbl_recibo_aplicacion).
         /// </summary>
         public int GuardarPagoAplicado(DateTime fecha, int idCliente, string observaciones)
         {
@@ -205,7 +260,7 @@ namespace Capa_Controlador_CxC
                 throw new InvalidOperationException("No hay líneas de pago.");
 
             var clientes = _bufferPago.Select(x => x.IdCliente).Distinct().ToList();
-            if (clientes.Count != 1 || clientes[0] != idCliente)
+            if (clientes.Count != 1 || (clientes[0] != 0 && clientes[0] != idCliente))
                 throw new InvalidOperationException("Todas las líneas deben pertenecer al mismo cliente seleccionado.");
 
             var total = _bufferPago.Sum(x => x.Monto);
@@ -217,10 +272,9 @@ namespace Capa_Controlador_CxC
                 Cliente = _bufferPago.First().Cliente, // informativo
                 Monto = total,
                 Observaciones = (observaciones ?? "").Trim(),
-                IdUsuario = 1 // TODO: setear usuario real si aplica
+                IdUsuario = 1 // TODO: usuario real
             };
 
-            // NOTA: Ajusta nombres de propiedades según tus DTO del Modelo
             var detalles = _bufferPago.Select(x => new LineaPago
             {
                 IdMetodoPago = x.IdMetodo,
@@ -239,10 +293,20 @@ namespace Capa_Controlador_CxC
             return creado.Id;
         }
 
+        // Versión de compatibilidad con firma (fecha, cliente, metodo, referencia)
+        // Versión de compatibilidad (fecha, cliente, metodo, referencia)
         public int GuardarPagoAplicado(DateTime date, string cliente, string metodo, string referencia)
         {
-            throw new NotImplementedException();
+            if (_bufferPago.Count == 0)
+                throw new InvalidOperationException("No hay líneas de pago.");
+
+            // Tomamos el cliente desde las líneas
+            int idCliente = _bufferPago.First().IdCliente;
+            string obs = $"{metodo} {referencia}".Trim();
+
+            return GuardarPagoAplicado(date, idCliente, obs);
         }
+
 
         // Overload de compatibilidad si la Vista manda (fecha, idCliente, totalIgnorado, obs)
         public int GuardarPagoAplicado(DateTime fecha, int idCliente, decimal totalIgnorado, string observaciones)

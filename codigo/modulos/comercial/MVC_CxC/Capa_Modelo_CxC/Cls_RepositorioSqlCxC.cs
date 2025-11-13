@@ -13,21 +13,30 @@ namespace Capa_Modelo_CxC
         public BindingList<FacturaPendiente> ListarFacturas(string clienteLike, DateTime? desde, DateTime? hasta)
         {
             var list = new BindingList<FacturaPendiente>();
+
             string sql =
 @"
-SELECT d.Cmp_Id_CxC_Documento, d.Cmp_Fecha_Emision, d.Cmp_Total_Documento, d.Cmp_Saldo_Pendiente,
-       c.Cmp_Id_Cliente, c.Cmp_Nombre_Cliente
-FROM Tbl_CxC_Documento d
-JOIN Tbl_Cliente c ON c.Cmp_Id_Cliente = d.Cmp_Id_Cliente
-WHERE d.Cmp_Saldo_Pendiente > 0
+SELECT 
+    d.Id_Documento,           -- 0
+    d.Cmp_Fecha,              -- 1
+    d.Cmp_Total_Documento,    -- 2
+    d.Cmp_Saldo_Actual,       -- 3
+    c.Id_Cliente,             -- 4
+    c.Cmp_Nombre_Cliente,     -- 5
+    d.Cmp_Numero              -- 6
+FROM tbl_documento_cxc d
+JOIN tbl_cliente c ON c.Id_Cliente = d.Id_Cliente
+WHERE d.Cmp_Es_Credito = 1
+  AND d.Cmp_Saldo_Actual > 0
   AND (? IS NULL OR c.Cmp_Nombre_Cliente LIKE ?)
-  AND (? IS NULL OR d.Cmp_Fecha_Emision >= ?)
-  AND (? IS NULL OR d.Cmp_Fecha_Emision <= ?)
-ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
+  AND (? IS NULL OR d.Cmp_Fecha >= ?)
+  AND (? IS NULL OR d.Cmp_Fecha <= ?)
+ORDER BY d.Cmp_Fecha DESC, d.Id_Documento DESC;";
 
             using (OdbcConnection cn = _cx.conexion())
             using (OdbcCommand cmd = new OdbcCommand(sql, cn))
             {
+                // ----- Filtro por cliente -----
                 if (string.IsNullOrWhiteSpace(clienteLike))
                 {
                     cmd.Parameters.Add("pCliNull", OdbcType.VarChar).Value = DBNull.Value;
@@ -39,6 +48,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                     cmd.Parameters.Add("pCliLike", OdbcType.VarChar).Value = "%" + clienteLike + "%";
                 }
 
+                // ----- Filtro desde -----
                 if (desde.HasValue)
                 {
                     cmd.Parameters.Add("pDesdeNull", OdbcType.Date).Value = DateTime.Now; // NOT NULL
@@ -50,6 +60,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                     cmd.Parameters.Add("pDesde", OdbcType.Date).Value = DateTime.Today;
                 }
 
+                // ----- Filtro hasta -----
                 if (hasta.HasValue)
                 {
                     cmd.Parameters.Add("pHastaNull", OdbcType.Date).Value = DateTime.Now; // NOT NULL
@@ -73,7 +84,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                             Saldo = dr.GetDecimal(3),
                             IdCliente = dr.GetInt32(4),
                             Cliente = dr.IsDBNull(5) ? "" : dr.GetString(5),
-                            Numero = dr.GetInt32(0).ToString() // no hay número → usa Id
+                            Numero = dr.IsDBNull(6) ? "" : dr.GetString(6)
                         };
                         list.Add(f);
                     }
@@ -87,11 +98,18 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
         {
             var list = new BindingList<Recibo>();
             string sql =
-@"SELECT r.Cmp_Id_Recibo, r.Cmp_Fecha_Recibo, r.Cmp_Id_Cliente, c.Cmp_Nombre_Cliente,
-         r.Cmp_Total_Recibo, r.Cmp_Observaciones, r.Cmp_Id_Usuario
-  FROM Tbl_Recibo r
-  JOIN Tbl_Cliente c ON c.Cmp_Id_Cliente = r.Cmp_Id_Cliente
- ORDER BY r.Cmp_Id_Recibo DESC;";
+@"
+SELECT 
+    r.Cmp_Id_Recibo,       -- 0
+    r.Cmp_Fecha_Recibo,    -- 1
+    r.Cmp_Id_Cliente,      -- 2
+    c.Cmp_Nombre_Cliente,  -- 3
+    r.Cmp_Total_Recibo,    -- 4
+    r.Cmp_Observaciones,   -- 5
+    r.Cmp_Id_Usuario       -- 6
+FROM tbl_recibo r
+JOIN tbl_cliente c ON c.Id_Cliente = r.Cmp_Id_Cliente
+ORDER BY r.Cmp_Id_Recibo DESC;";
 
             using (OdbcConnection cn = _cx.conexion())
             using (OdbcCommand cmd = new OdbcCommand(sql, cn))
@@ -125,7 +143,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                 {
                     // 1) Header
                     string insH =
-@"INSERT INTO Tbl_Recibo (Cmp_Fecha_Recibo, Cmp_Id_Cliente, Cmp_Total_Recibo, Cmp_Observaciones, Cmp_Id_Usuario)
+@"INSERT INTO tbl_recibo (Cmp_Fecha_Recibo, Cmp_Id_Cliente, Cmp_Total_Recibo, Cmp_Observaciones, Cmp_Id_Usuario)
   VALUES (?,?,?,?,?); SELECT LAST_INSERT_ID();";
                     int newId;
                     using (OdbcCommand cmd = new OdbcCommand(insH, cn, tx))
@@ -142,7 +160,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                     // 2) Detalle de métodos de pago
                     if (detalles != null)
                     {
-                        string insD = @"INSERT INTO Tbl_Recibo_Det (Cmp_Id_Recibo, Cmp_Id_Metodo_Pago, Cmp_Monto_Pago) VALUES (?,?,?);";
+                        string insD = @"INSERT INTO tbl_recibo_det (Cmp_Id_Recibo, Cmp_Id_Metodo_Pago, Cmp_Monto_Pago) VALUES (?,?,?);";
                         using (OdbcCommand cmd = new OdbcCommand(insD, cn, tx))
                         {
                             cmd.Parameters.Add("idrec", OdbcType.Int);
@@ -162,8 +180,9 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                     // 3) Aplicaciones a documentos + actualización de saldo
                     if (apps != null)
                     {
-                        string insA = @"INSERT INTO Tbl_Recibo_Aplicacion (Cmp_Id_Recibo, Cmp_Id_CxC_Documento, Cmp_Monto_Aplicado) VALUES (?,?,?);";
-                        string updS = @"UPDATE Tbl_CxC_Documento SET Cmp_Saldo_Pendiente = Cmp_Saldo_Pendiente - ? WHERE Cmp_Id_CxC_Documento = ?;";
+                        string insA = @"INSERT INTO tbl_recibo_aplicacion (Cmp_Id_Recibo, Cmp_Id_CxC_Documento, Cmp_Monto_Aplicado) VALUES (?,?,?);";
+                        string updS = @"UPDATE tbl_documento_cxc SET Cmp_Saldo_Actual = Cmp_Saldo_Actual - ? WHERE Id_Documento = ?;";
+
                         using (OdbcCommand cmdA = new OdbcCommand(insA, cn, tx))
                         using (OdbcCommand cmdS = new OdbcCommand(updS, cn, tx))
                         {
@@ -190,8 +209,8 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                         }
                     }
 
-                    // 4) Caja ingreso (opcional pero recomendado)
-                    string insCaja = @"INSERT INTO Tbl_Caja_Ingreso (Cmp_Id_Recibo, Cmp_Fecha_Ingreso, Cmp_Monto_Ingreso) VALUES (?,?,?);";
+                    // 4) Caja ingreso
+                    string insCaja = @"INSERT INTO tbl_caja_ingreso (Cmp_Id_Recibo, Cmp_Fecha_Ingreso, Cmp_Monto_Ingreso) VALUES (?,?,?);";
                     using (OdbcCommand cmd = new OdbcCommand(insCaja, cn, tx))
                     {
                         cmd.Parameters.Add("idrec", OdbcType.Int).Value = newId;
@@ -215,7 +234,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
 
         public void EditarRecibo(Recibo r)
         {
-            string sql = @"UPDATE Tbl_Recibo SET Cmp_Fecha_Recibo=?, Cmp_Observaciones=? WHERE Cmp_Id_Recibo=?;";
+            string sql = @"UPDATE tbl_recibo SET Cmp_Fecha_Recibo=?, Cmp_Observaciones=? WHERE Cmp_Id_Recibo=?;";
             using (OdbcConnection cn = _cx.conexion())
             using (OdbcCommand cmd = new OdbcCommand(sql, cn))
             {
@@ -226,7 +245,6 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
             }
         }
 
-        // Anulación simple: (1) revertir saldos aplicados, (2) borrar aplicaciones/detalles, (3) borrar/flag recibo, (4) borrar caja
         public void AnularRecibo(int idRecibo)
         {
             using (OdbcConnection cn = _cx.conexion())
@@ -235,7 +253,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                 try
                 {
                     // 1) Revertir saldos
-                    string selApps = @"SELECT Cmp_Id_CxC_Documento, Cmp_Monto_Aplicado FROM Tbl_Recibo_Aplicacion WHERE Cmp_Id_Recibo=?;";
+                    string selApps = @"SELECT Cmp_Id_CxC_Documento, Cmp_Monto_Aplicado FROM tbl_recibo_aplicacion WHERE Cmp_Id_Recibo=?;";
                     using (OdbcCommand cmd = new OdbcCommand(selApps, cn, tx))
                     {
                         cmd.Parameters.Add("id", OdbcType.Int).Value = idRecibo;
@@ -245,7 +263,7 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                             {
                                 int idDoc = dr.GetInt32(0);
                                 decimal monto = dr.GetDecimal(1);
-                                string upd = @"UPDATE Tbl_CxC_Documento SET Cmp_Saldo_Pendiente = Cmp_Saldo_Pendiente + ? WHERE Cmp_Id_CxC_Documento=?;";
+                                string upd = @"UPDATE tbl_documento_cxc SET Cmp_Saldo_Actual = Cmp_Saldo_Actual + ? WHERE Id_Documento=?;";
                                 using (OdbcCommand cmdU = new OdbcCommand(upd, cn, tx))
                                 {
                                     cmdU.Parameters.Add("m", OdbcType.Decimal).Value = monto;
@@ -257,12 +275,12 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
                     }
 
                     // 2) Borrar hijos
-                    ExecNonQ(tx, "DELETE FROM Tbl_Caja_Ingreso       WHERE Cmp_Id_Recibo=?;", idRecibo);
-                    ExecNonQ(tx, "DELETE FROM Tbl_Recibo_Aplicacion WHERE Cmp_Id_Recibo=?;", idRecibo);
-                    ExecNonQ(tx, "DELETE FROM Tbl_Recibo_Det       WHERE Cmp_Id_Recibo=?;", idRecibo);
+                    ExecNonQ(tx, "DELETE FROM tbl_caja_ingreso       WHERE Cmp_Id_Recibo=?;", idRecibo);
+                    ExecNonQ(tx, "DELETE FROM tbl_recibo_aplicacion WHERE Cmp_Id_Recibo=?;", idRecibo);
+                    ExecNonQ(tx, "DELETE FROM tbl_recibo_det       WHERE Cmp_Id_Recibo=?;", idRecibo);
 
                     // 3) Borrar recibo
-                    ExecNonQ(tx, "DELETE FROM Tbl_Recibo WHERE Cmp_Id_Recibo=?;", idRecibo);
+                    ExecNonQ(tx, "DELETE FROM tbl_recibo WHERE Cmp_Id_Recibo=?;", idRecibo);
 
                     tx.Commit();
                 }
@@ -290,15 +308,16 @@ ORDER BY d.Cmp_Fecha_Emision DESC, d.Cmp_Id_CxC_Documento DESC;";
 @"
 SELECT 
   c.Cmp_Nombre_Cliente AS Cliente,
-  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha_Emision) BETWEEN 0  AND 30 THEN d.Cmp_Saldo_Pendiente ELSE 0 END) AS `0_30`,
-  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha_Emision) BETWEEN 31 AND 60 THEN d.Cmp_Saldo_Pendiente ELSE 0 END) AS `31_60`,
-  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha_Emision) BETWEEN 61 AND 90 THEN d.Cmp_Saldo_Pendiente ELSE 0 END) AS `61_90`,
-  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha_Emision) > 90 THEN d.Cmp_Saldo_Pendiente ELSE 0 END)               AS `Mas_90`,
-  SUM(d.Cmp_Saldo_Pendiente) AS Total
-FROM Tbl_CxC_Documento d
-JOIN Tbl_Cliente c ON c.Cmp_Id_Cliente = d.Cmp_Id_Cliente
-WHERE d.Cmp_Saldo_Pendiente > 0
-  AND (? IS NULL OR d.Cmp_Id_Cliente = ?)
+  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha) BETWEEN 0  AND 30 THEN d.Cmp_Saldo_Actual ELSE 0 END) AS `0_30`,
+  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha) BETWEEN 31 AND 60 THEN d.Cmp_Saldo_Actual ELSE 0 END) AS `31_60`,
+  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha) BETWEEN 61 AND 90 THEN d.Cmp_Saldo_Actual ELSE 0 END) AS `61_90`,
+  SUM(CASE WHEN DATEDIFF(?, d.Cmp_Fecha) > 90 THEN d.Cmp_Saldo_Actual ELSE 0 END)               AS `Mas_90`,
+  SUM(d.Cmp_Saldo_Actual) AS Total
+FROM tbl_documento_cxc d
+JOIN tbl_cliente c ON c.Id_Cliente = d.Id_Cliente
+WHERE d.Cmp_Es_Credito = 1
+  AND d.Cmp_Saldo_Actual > 0
+  AND (? IS NULL OR d.Id_Cliente = ?)
 GROUP BY c.Cmp_Nombre_Cliente
 ORDER BY c.Cmp_Nombre_Cliente;";
 
@@ -313,9 +332,15 @@ ORDER BY c.Cmp_Nombre_Cliente;";
                 cmd.Parameters.Add("c4", OdbcType.Date).Value = fechaCorte.Date;
 
                 if (idCliente.HasValue)
-                { cmd.Parameters.Add("n", OdbcType.Int).Value = idCliente.Value; cmd.Parameters.Add("c", OdbcType.Int).Value = idCliente.Value; }
+                {
+                    cmd.Parameters.Add("n", OdbcType.Int).Value = idCliente.Value;
+                    cmd.Parameters.Add("c", OdbcType.Int).Value = idCliente.Value;
+                }
                 else
-                { cmd.Parameters.Add("n", OdbcType.Int).Value = DBNull.Value; cmd.Parameters.Add("c", OdbcType.Int).Value = 0; }
+                {
+                    cmd.Parameters.Add("n", OdbcType.Int).Value = DBNull.Value;
+                    cmd.Parameters.Add("c", OdbcType.Int).Value = 0;
+                }
 
                 da.Fill(dt);
             }
@@ -327,20 +352,20 @@ ORDER BY c.Cmp_Nombre_Cliente;";
             const string sql =
 @"
 SELECT 
-  r.Cmp_Id_Recibo     AS Recibo,
+  r.Cmp_Id_Recibo      AS Recibo,
   c.Cmp_Nombre_Cliente AS Cliente,
   IFNULL(mp.Cmp_Nombre_Metodo, '-') AS Metodo,
-  rd.Cmp_Monto_Pago   AS Monto
-FROM Tbl_Recibo r
-JOIN Tbl_Cliente c         ON c.Cmp_Id_Cliente = r.Cmp_Id_Cliente
-LEFT JOIN Tbl_Recibo_Det rd ON rd.Cmp_Id_Recibo = r.Cmp_Id_Recibo
-LEFT JOIN Tbl_Metodo_Pago mp ON mp.Cmp_Id_Metodo_Pago = rd.Cmp_Id_Metodo_Pago
+  rd.Cmp_Monto_Pago    AS Monto
+FROM tbl_recibo r
+JOIN tbl_cliente c           ON c.Id_Cliente = r.Cmp_Id_Cliente
+LEFT JOIN tbl_recibo_det rd  ON rd.Cmp_Id_Recibo = r.Cmp_Id_Recibo
+LEFT JOIN tbl_metodo_pago mp ON mp.Id_Metodo_Pago = rd.Cmp_Id_Metodo_Pago
 WHERE r.Cmp_Fecha_Recibo = ?
 ORDER BY r.Cmp_Id_Recibo;";
 
             const string sqlTot =
-@"SELECT COALESCE(SUM(rd.Cmp_Monto_Pago),0) FROM Tbl_Recibo r
-  LEFT JOIN Tbl_Recibo_Det rd ON rd.Cmp_Id_Recibo = r.Cmp_Id_Recibo
+@"SELECT COALESCE(SUM(rd.Cmp_Monto_Pago),0) FROM tbl_recibo r
+  LEFT JOIN tbl_recibo_det rd ON rd.Cmp_Id_Recibo = r.Cmp_Id_Recibo
  WHERE r.Cmp_Fecha_Recibo = ?;";
 
             var dt = new DataTable();
@@ -371,8 +396,10 @@ ORDER BY r.Cmp_Id_Recibo;";
             var dt = new DataTable();
             using (OdbcConnection cn = _cx.conexion())
             using (OdbcDataAdapter da = new OdbcDataAdapter(
-                "SELECT Cmp_Id_Cliente, Cmp_Nombre_Cliente FROM Tbl_Cliente ORDER BY Cmp_Nombre_Cliente;", cn))
+                "SELECT Id_Cliente, Cmp_Nombre_Cliente FROM tbl_cliente ORDER BY Cmp_Nombre_Cliente;", cn))
+            {
                 da.Fill(dt);
+            }
             return dt;
         }
     }
