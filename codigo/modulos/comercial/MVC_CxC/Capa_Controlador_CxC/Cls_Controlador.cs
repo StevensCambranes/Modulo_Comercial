@@ -12,7 +12,7 @@ namespace Capa_Controlador_CxC
         // ==== REPO ====
         private readonly Cls_IRepositorioCxC _repo;
 
-        public Cls_Controlador() : this(new Cls_RepositorioSqlCxC()) { }
+        public Cls_Controlador() : this(new Cls_Sentencias_SQL()) { }
         public Cls_Controlador(Cls_IRepositorioCxC repo) { _repo = repo; }
 
         // =========================================================================================

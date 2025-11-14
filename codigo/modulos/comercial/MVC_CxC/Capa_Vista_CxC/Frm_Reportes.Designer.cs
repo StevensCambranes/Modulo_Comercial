@@ -20,23 +20,23 @@ namespace Capa_Vista_CxC
             this.mnuAplicarPago = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
-            this.gpParams = new System.Windows.Forms.GroupBox();
-            this.lblTipo = new System.Windows.Forms.Label();
-            this.cboTipo = new System.Windows.Forms.ComboBox();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.cboCliente = new System.Windows.Forms.ComboBox();
-            this.lblCorte = new System.Windows.Forms.Label();
-            this.dtpCorte = new System.Windows.Forms.DateTimePicker();
-            this.lblFechaCaja = new System.Windows.Forms.Label();
-            this.dtpFechaCaja = new System.Windows.Forms.DateTimePicker();
-            this.btnVer = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.btnExportar = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.gridReporte = new System.Windows.Forms.DataGridView();
+            this.Gpb_Params = new System.Windows.Forms.GroupBox();
+            this.Lbl_Tipo = new System.Windows.Forms.Label();
+            this.Cbo_Tipo = new System.Windows.Forms.ComboBox();
+            this.Lbl_Cliente = new System.Windows.Forms.Label();
+            this.Cbo_Cliente = new System.Windows.Forms.ComboBox();
+            this.Lbl_Corte = new System.Windows.Forms.Label();
+            this.Dtp_FechaCorte = new System.Windows.Forms.DateTimePicker();
+            this.Lbl_FechaCaja = new System.Windows.Forms.Label();
+            this.Dtp_FechaCaja = new System.Windows.Forms.DateTimePicker();
+            this.Btn_Ver = new System.Windows.Forms.Button();
+            this.Btn_Imprimir = new System.Windows.Forms.Button();
+            this.Btn_Exportar = new System.Windows.Forms.Button();
+            this.Lbl_Total = new System.Windows.Forms.Label();
+            this.Dgv_Reporte = new System.Windows.Forms.DataGridView();
             this.menu.SuspendLayout();
-            this.gpParams.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReporte)).BeginInit();
+            this.Gpb_Params.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reporte)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -78,151 +78,152 @@ namespace Capa_Vista_CxC
             this.mnuSalir.Size = new System.Drawing.Size(45, 20);
             this.mnuSalir.Text = "Salir";
             // 
-            // gpParams
+            // Gpb_Params
             // 
-            this.gpParams.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Gpb_Params.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpParams.Controls.Add(this.lblTipo);
-            this.gpParams.Controls.Add(this.cboTipo);
-            this.gpParams.Controls.Add(this.lblCliente);
-            this.gpParams.Controls.Add(this.cboCliente);
-            this.gpParams.Controls.Add(this.lblCorte);
-            this.gpParams.Controls.Add(this.dtpCorte);
-            this.gpParams.Controls.Add(this.lblFechaCaja);
-            this.gpParams.Controls.Add(this.dtpFechaCaja);
-            this.gpParams.Controls.Add(this.btnVer);
-            this.gpParams.Controls.Add(this.btnImprimir);
-            this.gpParams.Controls.Add(this.btnExportar);
-            this.gpParams.Controls.Add(this.lblTotal);
-            this.gpParams.Location = new System.Drawing.Point(12, 32);
-            this.gpParams.Name = "gpParams";
-            this.gpParams.Size = new System.Drawing.Size(1176, 92);
-            this.gpParams.TabIndex = 1;
-            this.gpParams.TabStop = false;
-            this.gpParams.Text = "Parámetros";
+            this.Gpb_Params.Controls.Add(this.Lbl_Tipo);
+            this.Gpb_Params.Controls.Add(this.Cbo_Tipo);
+            this.Gpb_Params.Controls.Add(this.Lbl_Cliente);
+            this.Gpb_Params.Controls.Add(this.Cbo_Cliente);
+            this.Gpb_Params.Controls.Add(this.Lbl_Corte);
+            this.Gpb_Params.Controls.Add(this.Dtp_FechaCorte);
+            this.Gpb_Params.Controls.Add(this.Lbl_FechaCaja);
+            this.Gpb_Params.Controls.Add(this.Dtp_FechaCaja);
+            this.Gpb_Params.Controls.Add(this.Btn_Ver);
+            this.Gpb_Params.Controls.Add(this.Btn_Imprimir);
+            this.Gpb_Params.Controls.Add(this.Btn_Exportar);
+            this.Gpb_Params.Controls.Add(this.Lbl_Total);
+            this.Gpb_Params.Location = new System.Drawing.Point(12, 32);
+            this.Gpb_Params.Name = "Gpb_Params";
+            this.Gpb_Params.Size = new System.Drawing.Size(1176, 92);
+            this.Gpb_Params.TabIndex = 1;
+            this.Gpb_Params.TabStop = false;
+            this.Gpb_Params.Text = "Parámetros";
             // 
-            // lblTipo
+            // Lbl_Tipo
             // 
-            this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(16, 32);
-            this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(37, 16);
-            this.lblTipo.TabIndex = 0;
-            this.lblTipo.Text = "Tipo:";
+            this.Lbl_Tipo.AutoSize = true;
+            this.Lbl_Tipo.Location = new System.Drawing.Point(16, 32);
+            this.Lbl_Tipo.Name = "Lbl_Tipo";
+            this.Lbl_Tipo.Size = new System.Drawing.Size(37, 16);
+            this.Lbl_Tipo.TabIndex = 0;
+            this.Lbl_Tipo.Text = "Tipo:";
             // 
-            // cboTipo
+            // Cbo_Tipo
             // 
-            this.cboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipo.Location = new System.Drawing.Point(56, 28);
-            this.cboTipo.Name = "cboTipo";
-            this.cboTipo.Size = new System.Drawing.Size(220, 24);
-            this.cboTipo.TabIndex = 1;
+            this.Cbo_Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cbo_Tipo.Location = new System.Drawing.Point(56, 28);
+            this.Cbo_Tipo.Name = "Cbo_Tipo";
+            this.Cbo_Tipo.Size = new System.Drawing.Size(220, 24);
+            this.Cbo_Tipo.TabIndex = 1;
             // 
-            // lblCliente
+            // Lbl_Cliente
             // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(300, 32);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(53, 16);
-            this.lblCliente.TabIndex = 2;
-            this.lblCliente.Text = "Cliente:";
+            this.Lbl_Cliente.AutoSize = true;
+            this.Lbl_Cliente.Location = new System.Drawing.Point(300, 32);
+            this.Lbl_Cliente.Name = "Lbl_Cliente";
+            this.Lbl_Cliente.Size = new System.Drawing.Size(53, 16);
+            this.Lbl_Cliente.TabIndex = 2;
+            this.Lbl_Cliente.Text = "Cliente:";
             // 
-            // cboCliente
+            // Cbo_Cliente
             // 
-            this.cboCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCliente.Location = new System.Drawing.Point(351, 28);
-            this.cboCliente.Name = "cboCliente";
-            this.cboCliente.Size = new System.Drawing.Size(240, 24);
-            this.cboCliente.TabIndex = 3;
+            this.Cbo_Cliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cbo_Cliente.Location = new System.Drawing.Point(351, 28);
+            this.Cbo_Cliente.Name = "Cbo_Cliente";
+            this.Cbo_Cliente.Size = new System.Drawing.Size(240, 24);
+            this.Cbo_Cliente.TabIndex = 3;
             // 
-            // lblCorte
+            // Lbl_Corte
             // 
-            this.lblCorte.AutoSize = true;
-            this.lblCorte.Location = new System.Drawing.Point(610, 32);
-            this.lblCorte.Name = "lblCorte";
-            this.lblCorte.Size = new System.Drawing.Size(80, 16);
-            this.lblCorte.TabIndex = 4;
-            this.lblCorte.Text = "Fecha corte:";
+            this.Lbl_Corte.AutoSize = true;
+            this.Lbl_Corte.Location = new System.Drawing.Point(610, 32);
+            this.Lbl_Corte.Name = "Lbl_Corte";
+            this.Lbl_Corte.Size = new System.Drawing.Size(80, 16);
+            this.Lbl_Corte.TabIndex = 4;
+            this.Lbl_Corte.Text = "Fecha corte:";
             // 
-            // dtpCorte
+            // Dtp_FechaCorte
             // 
-            this.dtpCorte.Location = new System.Drawing.Point(685, 28);
-            this.dtpCorte.Name = "dtpCorte";
-            this.dtpCorte.Size = new System.Drawing.Size(180, 23);
-            this.dtpCorte.TabIndex = 5;
+            this.Dtp_FechaCorte.Location = new System.Drawing.Point(685, 28);
+            this.Dtp_FechaCorte.Name = "Dtp_FechaCorte";
+            this.Dtp_FechaCorte.Size = new System.Drawing.Size(180, 23);
+            this.Dtp_FechaCorte.TabIndex = 5;
             // 
-            // lblFechaCaja
+            // Lbl_FechaCaja
             // 
-            this.lblFechaCaja.AutoSize = true;
-            this.lblFechaCaja.Location = new System.Drawing.Point(300, 61);
-            this.lblFechaCaja.Name = "lblFechaCaja";
-            this.lblFechaCaja.Size = new System.Drawing.Size(47, 16);
-            this.lblFechaCaja.TabIndex = 6;
-            this.lblFechaCaja.Text = "Fecha:";
+            this.Lbl_FechaCaja.AutoSize = true;
+            this.Lbl_FechaCaja.Location = new System.Drawing.Point(300, 61);
+            this.Lbl_FechaCaja.Name = "Lbl_FechaCaja";
+            this.Lbl_FechaCaja.Size = new System.Drawing.Size(47, 16);
+            this.Lbl_FechaCaja.TabIndex = 6;
+            this.Lbl_FechaCaja.Text = "Fecha:";
             // 
-            // dtpFechaCaja
+            // Dtp_FechaCaja
             // 
-            this.dtpFechaCaja.Location = new System.Drawing.Point(351, 57);
-            this.dtpFechaCaja.Name = "dtpFechaCaja";
-            this.dtpFechaCaja.Size = new System.Drawing.Size(180, 23);
-            this.dtpFechaCaja.TabIndex = 7;
+            this.Dtp_FechaCaja.Location = new System.Drawing.Point(351, 57);
+            this.Dtp_FechaCaja.Name = "Dtp_FechaCaja";
+            this.Dtp_FechaCaja.Size = new System.Drawing.Size(180, 23);
+            this.Dtp_FechaCaja.TabIndex = 7;
             // 
-            // btnVer
+            // Btn_Ver
             // 
-            this.btnVer.Location = new System.Drawing.Point(885, 27);
-            this.btnVer.Name = "btnVer";
-            this.btnVer.Size = new System.Drawing.Size(80, 24);
-            this.btnVer.TabIndex = 8;
-            this.btnVer.Text = "Ver";
+            this.Btn_Ver.Location = new System.Drawing.Point(885, 27);
+            this.Btn_Ver.Name = "Btn_Ver";
+            this.Btn_Ver.Size = new System.Drawing.Size(80, 24);
+            this.Btn_Ver.TabIndex = 8;
+            this.Btn_Ver.Text = "Ver";
             // 
-            // btnImprimir
+            // Btn_Imprimir
             // 
-            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImprimir.Location = new System.Drawing.Point(994, 27);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(80, 24);
-            this.btnImprimir.TabIndex = 9;
-            this.btnImprimir.Text = "Imprimir";
+            this.Btn_Imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Imprimir.Location = new System.Drawing.Point(994, 27);
+            this.Btn_Imprimir.Name = "Btn_Imprimir";
+            this.Btn_Imprimir.Size = new System.Drawing.Size(80, 24);
+            this.Btn_Imprimir.TabIndex = 9;
+            this.Btn_Imprimir.Text = "Imprimir";
+            this.Btn_Imprimir.Click += new System.EventHandler(this.Btn_Imprimir_Click);
             // 
-            // btnExportar
+            // Btn_Exportar
             // 
-            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(1090, 27);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(90, 24);
-            this.btnExportar.TabIndex = 10;
-            this.btnExportar.Text = "Exportar CSV";
+            this.Btn_Exportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Exportar.Location = new System.Drawing.Point(1090, 27);
+            this.Btn_Exportar.Name = "Btn_Exportar";
+            this.Btn_Exportar.Size = new System.Drawing.Size(90, 24);
+            this.Btn_Exportar.TabIndex = 10;
+            this.Btn_Exportar.Text = "Exportar CSV";
             // 
-            // lblTotal
+            // Lbl_Total
             // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(995, 61);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(0, 16);
-            this.lblTotal.TabIndex = 11;
+            this.Lbl_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_Total.AutoSize = true;
+            this.Lbl_Total.Location = new System.Drawing.Point(995, 61);
+            this.Lbl_Total.Name = "Lbl_Total";
+            this.Lbl_Total.Size = new System.Drawing.Size(0, 16);
+            this.Lbl_Total.TabIndex = 11;
             // 
-            // gridReporte
+            // Dgv_Reporte
             // 
-            this.gridReporte.AllowUserToAddRows = false;
-            this.gridReporte.AllowUserToDeleteRows = false;
-            this.gridReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_Reporte.AllowUserToAddRows = false;
+            this.Dgv_Reporte.AllowUserToDeleteRows = false;
+            this.Dgv_Reporte.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridReporte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridReporte.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.gridReporte.Location = new System.Drawing.Point(12, 134);
-            this.gridReporte.Name = "gridReporte";
-            this.gridReporte.ReadOnly = true;
-            this.gridReporte.RowHeadersVisible = false;
-            this.gridReporte.Size = new System.Drawing.Size(1176, 504);
-            this.gridReporte.TabIndex = 0;
+            this.Dgv_Reporte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_Reporte.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.Dgv_Reporte.Location = new System.Drawing.Point(12, 134);
+            this.Dgv_Reporte.Name = "Dgv_Reporte";
+            this.Dgv_Reporte.ReadOnly = true;
+            this.Dgv_Reporte.RowHeadersVisible = false;
+            this.Dgv_Reporte.Size = new System.Drawing.Size(1176, 504);
+            this.Dgv_Reporte.TabIndex = 0;
             // 
             // Frm_Reportes
             // 
             this.ClientSize = new System.Drawing.Size(1200, 650);
-            this.Controls.Add(this.gridReporte);
-            this.Controls.Add(this.gpParams);
+            this.Controls.Add(this.Dgv_Reporte);
+            this.Controls.Add(this.Gpb_Params);
             this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menu;
@@ -231,9 +232,9 @@ namespace Capa_Vista_CxC
             this.Text = "Cuentas por Cobrar — Reportes (Antigüedad / Cierre de Caja)";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
-            this.gpParams.ResumeLayout(false);
-            this.gpParams.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReporte)).EndInit();
+            this.Gpb_Params.ResumeLayout(false);
+            this.Gpb_Params.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reporte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,23 +247,23 @@ namespace Capa_Vista_CxC
         private System.Windows.Forms.ToolStripMenuItem mnuReportes;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
 
-        private System.Windows.Forms.GroupBox gpParams;
-        private System.Windows.Forms.Label lblTipo;
-        private System.Windows.Forms.ComboBox cboTipo;
+        private System.Windows.Forms.GroupBox Gpb_Params;
+        private System.Windows.Forms.Label Lbl_Tipo;
+        private System.Windows.Forms.ComboBox Cbo_Tipo;
 
-        private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.ComboBox cboCliente;
-        private System.Windows.Forms.Label lblCorte;
-        private System.Windows.Forms.DateTimePicker dtpCorte;
+        private System.Windows.Forms.Label Lbl_Cliente;
+        private System.Windows.Forms.ComboBox Cbo_Cliente;
+        private System.Windows.Forms.Label Lbl_Corte;
+        private System.Windows.Forms.DateTimePicker Dtp_FechaCorte;
 
-        private System.Windows.Forms.Label lblFechaCaja;
-        private System.Windows.Forms.DateTimePicker dtpFechaCaja;
+        private System.Windows.Forms.Label Lbl_FechaCaja;
+        private System.Windows.Forms.DateTimePicker Dtp_FechaCaja;
 
-        private System.Windows.Forms.Button btnVer;
-        private System.Windows.Forms.Button btnExportar;
-        private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Button Btn_Ver;
+        private System.Windows.Forms.Button Btn_Exportar;
+        private System.Windows.Forms.Button Btn_Imprimir;
+        private System.Windows.Forms.Label Lbl_Total;
 
-        private System.Windows.Forms.DataGridView gridReporte;
+        private System.Windows.Forms.DataGridView Dgv_Reporte;
     }
 }

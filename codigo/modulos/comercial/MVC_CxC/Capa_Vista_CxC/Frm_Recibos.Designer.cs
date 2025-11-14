@@ -35,7 +35,7 @@
             this.Dtp_Hasta = new System.Windows.Forms.DateTimePicker();
             this.Btn_Filtrar = new System.Windows.Forms.Button();
             this.Btn_Limpiar = new System.Windows.Forms.Button();
-            this.gridRecibos = new System.Windows.Forms.DataGridView();
+            this.Dgv_Recibos = new System.Windows.Forms.DataGridView();
             this.colRecibo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReciboFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReciboCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +57,7 @@
             this.splitRecibos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Facturas)).BeginInit();
             this.Gpb_Buscar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridRecibos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Recibos)).BeginInit();
             this.Gpb_Recibo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +116,7 @@
             // 
             // splitRecibos.Panel2
             // 
-            this.splitRecibos.Panel2.Controls.Add(this.gridRecibos);
+            this.splitRecibos.Panel2.Controls.Add(this.Dgv_Recibos);
             this.splitRecibos.Panel2.Controls.Add(this.Gpb_Recibo);
             this.splitRecibos.Size = new System.Drawing.Size(1924, 696);
             this.splitRecibos.SplitterDistance = 1549;
@@ -271,24 +271,24 @@
             this.Btn_Limpiar.TabIndex = 7;
             this.Btn_Limpiar.Text = "Limpiar";
             // 
-            // gridRecibos
+            // Dgv_Recibos
             // 
-            this.gridRecibos.AllowUserToAddRows = false;
-            this.gridRecibos.AllowUserToDeleteRows = false;
-            this.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridRecibos.ColumnHeadersHeight = 29;
-            this.gridRecibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_Recibos.AllowUserToAddRows = false;
+            this.Dgv_Recibos.AllowUserToDeleteRows = false;
+            this.Dgv_Recibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_Recibos.ColumnHeadersHeight = 29;
+            this.Dgv_Recibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecibo,
             this.colReciboFecha,
             this.colReciboCliente,
             this.colReciboMonto});
-            this.gridRecibos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridRecibos.Location = new System.Drawing.Point(0, 140);
-            this.gridRecibos.Name = "gridRecibos";
-            this.gridRecibos.ReadOnly = true;
-            this.gridRecibos.RowHeadersWidth = 51;
-            this.gridRecibos.Size = new System.Drawing.Size(371, 556);
-            this.gridRecibos.TabIndex = 0;
+            this.Dgv_Recibos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_Recibos.Location = new System.Drawing.Point(0, 140);
+            this.Dgv_Recibos.Name = "Dgv_Recibos";
+            this.Dgv_Recibos.ReadOnly = true;
+            this.Dgv_Recibos.RowHeadersWidth = 51;
+            this.Dgv_Recibos.Size = new System.Drawing.Size(371, 556);
+            this.Dgv_Recibos.TabIndex = 0;
             // 
             // colRecibo
             // 
@@ -427,7 +427,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Frm_Recibos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cuentas por Cobrar — Recibos (Prototipo)";
+            this.Text = "Cuentas por Cobrar — Recibos ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -438,7 +438,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Facturas)).EndInit();
             this.Gpb_Buscar.ResumeLayout(false);
             this.Gpb_Buscar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridRecibos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Recibos)).EndInit();
             this.Gpb_Recibo.ResumeLayout(false);
             this.Gpb_Recibo.PerformLayout();
             this.ResumeLayout(false);
@@ -473,7 +473,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSaldo;
 
-        private System.Windows.Forms.DataGridView gridRecibos;
+        private System.Windows.Forms.DataGridView Dgv_Recibos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecibo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReciboFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReciboCliente;

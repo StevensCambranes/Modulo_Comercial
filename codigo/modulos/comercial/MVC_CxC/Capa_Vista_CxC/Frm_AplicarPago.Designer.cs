@@ -28,7 +28,7 @@
             this.Lbl_FechaPago = new System.Windows.Forms.Label();
             this.Dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
             this.Btn_AgregarLineaPago = new System.Windows.Forms.Button();
-            this.gridLineasPago = new System.Windows.Forms.DataGridView();
+            this.Dgv_LineasPago = new System.Windows.Forms.DataGridView();
             this.colLPFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLPCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLPSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +41,7 @@
             this.Btn_CancelarPago = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.Gpb_Pago.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLineasPago)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_LineasPago)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -184,25 +184,25 @@
             this.Btn_AgregarLineaPago.TabIndex = 8;
             this.Btn_AgregarLineaPago.Text = "Agregar a líneas";
             // 
-            // gridLineasPago
+            // Dgv_LineasPago
             // 
-            this.gridLineasPago.AllowUserToAddRows = false;
-            this.gridLineasPago.AllowUserToDeleteRows = false;
-            this.gridLineasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridLineasPago.ColumnHeadersHeight = 29;
-            this.gridLineasPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_LineasPago.AllowUserToAddRows = false;
+            this.Dgv_LineasPago.AllowUserToDeleteRows = false;
+            this.Dgv_LineasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_LineasPago.ColumnHeadersHeight = 29;
+            this.Dgv_LineasPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLPFactura,
             this.colLPCliente,
             this.colLPSaldo,
             this.colLPMonto,
             this.colLPMetodo,
             this.colLPRef});
-            this.gridLineasPago.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridLineasPago.Location = new System.Drawing.Point(0, 164);
-            this.gridLineasPago.Name = "gridLineasPago";
-            this.gridLineasPago.ReadOnly = true;
-            this.gridLineasPago.Size = new System.Drawing.Size(1200, 556);
-            this.gridLineasPago.TabIndex = 0;
+            this.Dgv_LineasPago.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_LineasPago.Location = new System.Drawing.Point(0, 164);
+            this.Dgv_LineasPago.Name = "Dgv_LineasPago";
+            this.Dgv_LineasPago.ReadOnly = true;
+            this.Dgv_LineasPago.Size = new System.Drawing.Size(1200, 556);
+            this.Dgv_LineasPago.TabIndex = 0;
             // 
             // colLPFactura
             // 
@@ -284,7 +284,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1200, 720);
-            this.Controls.Add(this.gridLineasPago);
+            this.Controls.Add(this.Dgv_LineasPago);
             this.Controls.Add(this.Lbl_TotalPago);
             this.Controls.Add(this.Txt_TotalPago);
             this.Controls.Add(this.Btn_CancelarPago);
@@ -295,13 +295,13 @@
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Frm_AplicarPago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cuentas por Cobrar — Aplicar Pago (Prototipo)";
+            this.Text = "Cuentas por Cobrar — Aplicar Pago ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.Gpb_Pago.ResumeLayout(false);
             this.Gpb_Pago.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLineasPago)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_LineasPago)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,7 +326,7 @@
         private System.Windows.Forms.DateTimePicker Dtp_FechaPago;
         private System.Windows.Forms.Button Btn_AgregarLineaPago;
 
-        private System.Windows.Forms.DataGridView gridLineasPago;
+        private System.Windows.Forms.DataGridView Dgv_LineasPago;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPSaldo;

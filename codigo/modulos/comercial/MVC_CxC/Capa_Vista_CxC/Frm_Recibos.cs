@@ -41,7 +41,7 @@ namespace Capa_Vista_CxC
             colReciboMonto.DataPropertyName = "Monto";
 
             Dgv_Facturas.MultiSelect = false;
-            gridRecibos.MultiSelect = false;
+            Dgv_Recibos.MultiSelect = false;
 
             Btn_Filtrar.Click += (s, e) => AplicarFiltro();
             Btn_Limpiar.Click += (s, e) => LimpiarFiltros();
@@ -57,7 +57,7 @@ namespace Capa_Vista_CxC
             Dgv_Facturas.DataSource = _dtFacturas;
 
             _dtRecibos = _ctrl.ObtenerRecibosDT();
-            gridRecibos.DataSource = _dtRecibos;
+            Dgv_Recibos.DataSource = _dtRecibos;
 
             Dtp_Desde.Value = DateTime.Today.AddDays(-30);
             Dtp_Hasta.Value = DateTime.Today;
@@ -112,7 +112,7 @@ namespace Capa_Vista_CxC
 
                 // refrescar grilla de recibos
                 _dtRecibos = _ctrl.ObtenerRecibosDT();
-                gridRecibos.DataSource = _dtRecibos;
+                Dgv_Recibos.DataSource = _dtRecibos;
 
                 // limpiar obs y seleccionar el nuevo si lo ves necesario
                 Txt_Obs.Clear();
@@ -130,10 +130,10 @@ namespace Capa_Vista_CxC
         {
             try
             {
-                if (gridRecibos.CurrentRow == null)
+                if (Dgv_Recibos.CurrentRow == null)
                     throw new ArgumentException("Seleccione un recibo para editar");
 
-                var row = (gridRecibos.CurrentRow.DataBoundItem as DataRowView).Row;
+                var row = (Dgv_Recibos.CurrentRow.DataBoundItem as DataRowView).Row;
                 int id = Convert.ToInt32(row["Recibo"]);
                 string clienteActual = Convert.ToString(row["Cliente"]);
                 decimal montoActual = Convert.ToDecimal(row["Monto"]);
@@ -154,7 +154,7 @@ namespace Capa_Vista_CxC
 
                 // refrescar
                 _dtRecibos = _ctrl.ObtenerRecibosDT();
-                gridRecibos.DataSource = _dtRecibos;
+                Dgv_Recibos.DataSource = _dtRecibos;
 
                 MessageBox.Show("Recibo actualizado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -168,10 +168,10 @@ namespace Capa_Vista_CxC
         {
             try
             {
-                if (gridRecibos.CurrentRow == null)
+                if (Dgv_Recibos.CurrentRow == null)
                     throw new ArgumentException("Seleccione un recibo para anular");
 
-                var row = (gridRecibos.CurrentRow.DataBoundItem as DataRowView).Row;
+                var row = (Dgv_Recibos.CurrentRow.DataBoundItem as DataRowView).Row;
                 int id = Convert.ToInt32(row["Recibo"]);
 
                 if (MessageBox.Show("¿Anular el recibo #" + id + "?", "Confirmar",
@@ -179,7 +179,7 @@ namespace Capa_Vista_CxC
                 {
                     _ctrl.AnularRecibo(id);
                     _dtRecibos = _ctrl.ObtenerRecibosDT();
-                    gridRecibos.DataSource = _dtRecibos;
+                    Dgv_Recibos.DataSource = _dtRecibos;
                     MessageBox.Show("Recibo anulado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

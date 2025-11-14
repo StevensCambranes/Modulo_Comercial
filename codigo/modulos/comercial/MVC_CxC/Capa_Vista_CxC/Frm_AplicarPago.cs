@@ -41,23 +41,23 @@ namespace Capa_Vista_CxC
         private void PrepararUi()
         {
             // Asegurar columna oculta "Id" para editar/eliminar por Id
-            if (!gridLineasPago.Columns.Contains("colLPId"))
+            if (!Dgv_LineasPago.Columns.Contains("colLPId"))
             {
                 var colId = new DataGridViewTextBoxColumn();
                 colId.Name = "colLPId";
                 colId.HeaderText = "Id";
                 colId.DataPropertyName = "Id";
                 colId.Visible = false;
-                gridLineasPago.Columns.Insert(0, colId);
+                Dgv_LineasPago.Columns.Insert(0, colId);
             }
 
             // Mapear columnas del Designer a nombres de DataTable
-            if (gridLineasPago.Columns.Contains("colLPFactura")) colLPFactura.DataPropertyName = "Factura";
-            if (gridLineasPago.Columns.Contains("colLPCliente")) colLPCliente.DataPropertyName = "Cliente";
-            if (gridLineasPago.Columns.Contains("colLPSaldo")) colLPSaldo.DataPropertyName = "Saldo";
-            if (gridLineasPago.Columns.Contains("colLPMonto")) colLPMonto.DataPropertyName = "Monto";
-            if (gridLineasPago.Columns.Contains("colLPMetodo")) colLPMetodo.DataPropertyName = "Método";
-            if (gridLineasPago.Columns.Contains("colLPRef")) colLPRef.DataPropertyName = "Referencia";
+            if (Dgv_LineasPago.Columns.Contains("colLPFactura")) colLPFactura.DataPropertyName = "Factura";
+            if (Dgv_LineasPago.Columns.Contains("colLPCliente")) colLPCliente.DataPropertyName = "Cliente";
+            if (Dgv_LineasPago.Columns.Contains("colLPSaldo")) colLPSaldo.DataPropertyName = "Saldo";
+            if (Dgv_LineasPago.Columns.Contains("colLPMonto")) colLPMonto.DataPropertyName = "Monto";
+            if (Dgv_LineasPago.Columns.Contains("colLPMetodo")) colLPMetodo.DataPropertyName = "Método";
+            if (Dgv_LineasPago.Columns.Contains("colLPRef")) colLPRef.DataPropertyName = "Referencia";
 
             // Valores por defecto
             if (Cbo_Metodo.Items.Count == 0)
@@ -76,16 +76,16 @@ namespace Capa_Vista_CxC
             Btn_GuardarPago.Click += Btn_GuardarPago_Click;
             Btn_CancelarPago.Click += Btn_CancelarPago_Click;
 
-            gridLineasPago.CellDoubleClick += GridLineasPago_CellDoubleClick; // editar
-            gridLineasPago.KeyDown += GridLineasPago_KeyDown;                 // eliminar con Supr
+            Dgv_LineasPago.CellDoubleClick += GridLineasPago_CellDoubleClick; // editar
+            Dgv_LineasPago.KeyDown += GridLineasPago_KeyDown;                 // eliminar con Supr
         }
 
 
         private void RefrescarGrid()
         {
             _dt = _ctrl.ObtenerLineasPagoDT();
-            gridLineasPago.AutoGenerateColumns = false;
-            gridLineasPago.DataSource = _dt;
+            Dgv_LineasPago.AutoGenerateColumns = false;
+            Dgv_LineasPago.DataSource = _dt;
 
             Txt_TotalPago.Text = _ctrl.TotalLineasPago()
                                    .ToString("0.00", CultureInfo.InvariantCulture);
@@ -130,8 +130,8 @@ namespace Capa_Vista_CxC
 
         private void GridLineasPago_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (gridLineasPago.CurrentRow == null) return;
-            var drv = gridLineasPago.CurrentRow.DataBoundItem as DataRowView;
+            if (Dgv_LineasPago.CurrentRow == null) return;
+            var drv = Dgv_LineasPago.CurrentRow.DataBoundItem as DataRowView;
             if (drv == null) return;
 
             int id = Convert.ToInt32(drv.Row["Id"]);
@@ -174,9 +174,9 @@ namespace Capa_Vista_CxC
 
         private void GridLineasPago_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete && gridLineasPago.CurrentRow != null)
+            if (e.KeyCode == Keys.Delete && Dgv_LineasPago.CurrentRow != null)
             {
-                var drv = gridLineasPago.CurrentRow.DataBoundItem as DataRowView;
+                var drv = Dgv_LineasPago.CurrentRow.DataBoundItem as DataRowView;
                 if (drv == null) return;
                 int id = Convert.ToInt32(drv.Row["Id"]);
 

@@ -5,7 +5,7 @@ namespace Capa_Modelo_CxC
 {
     public class Cls_Conexion
     {
-        private readonly string _dsn = "bd_cxc";
+        private readonly string _dsn = "bd_cxc"; 
 
         public OdbcConnection conexion()
         {
