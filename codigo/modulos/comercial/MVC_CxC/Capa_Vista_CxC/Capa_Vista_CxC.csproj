@@ -96,6 +96,11 @@
       <DependentUpon>Frm_Reportes.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,8 +113,20 @@
     <EmbeddedResource Include="Frm_Reportes.resx">
       <DependentUpon>Frm_Reportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icono_buscar.png" />
+    <None Include="Resources\icono_limpiar %281%29.png" />
+    <None Include="Resources\icono_imprimir.png" />
+    <None Include="Resources\icono_guardar.png" />
+    <None Include="Resources\icono_agregar.png" />
+    <None Include="Resources\icono_agregar1.png" />
+    <None Include="Resources\icono_modificar.png" />
+    <None Include="Resources\icono_cancelar.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

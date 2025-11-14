@@ -29,11 +29,11 @@ namespace Capa_Vista_CxC
             this.Dtp_FechaCorte = new System.Windows.Forms.DateTimePicker();
             this.Lbl_FechaCaja = new System.Windows.Forms.Label();
             this.Dtp_FechaCaja = new System.Windows.Forms.DateTimePicker();
+            this.Lbl_Total = new System.Windows.Forms.Label();
+            this.Dgv_Reporte = new System.Windows.Forms.DataGridView();
             this.Btn_Ver = new System.Windows.Forms.Button();
             this.Btn_Imprimir = new System.Windows.Forms.Button();
             this.Btn_Exportar = new System.Windows.Forms.Button();
-            this.Lbl_Total = new System.Windows.Forms.Label();
-            this.Dgv_Reporte = new System.Windows.Forms.DataGridView();
             this.menu.SuspendLayout();
             this.Gpb_Params.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reporte)).BeginInit();
@@ -167,33 +167,6 @@ namespace Capa_Vista_CxC
             this.Dtp_FechaCaja.Size = new System.Drawing.Size(180, 23);
             this.Dtp_FechaCaja.TabIndex = 7;
             // 
-            // Btn_Ver
-            // 
-            this.Btn_Ver.Location = new System.Drawing.Point(885, 27);
-            this.Btn_Ver.Name = "Btn_Ver";
-            this.Btn_Ver.Size = new System.Drawing.Size(80, 24);
-            this.Btn_Ver.TabIndex = 8;
-            this.Btn_Ver.Text = "Ver";
-            // 
-            // Btn_Imprimir
-            // 
-            this.Btn_Imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Imprimir.Location = new System.Drawing.Point(994, 27);
-            this.Btn_Imprimir.Name = "Btn_Imprimir";
-            this.Btn_Imprimir.Size = new System.Drawing.Size(80, 24);
-            this.Btn_Imprimir.TabIndex = 9;
-            this.Btn_Imprimir.Text = "Imprimir";
-            this.Btn_Imprimir.Click += new System.EventHandler(this.Btn_Imprimir_Click);
-            // 
-            // Btn_Exportar
-            // 
-            this.Btn_Exportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Exportar.Location = new System.Drawing.Point(1090, 27);
-            this.Btn_Exportar.Name = "Btn_Exportar";
-            this.Btn_Exportar.Size = new System.Drawing.Size(90, 24);
-            this.Btn_Exportar.TabIndex = 10;
-            this.Btn_Exportar.Text = "Exportar CSV";
-            // 
             // Lbl_Total
             // 
             this.Lbl_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -218,6 +191,33 @@ namespace Capa_Vista_CxC
             this.Dgv_Reporte.RowHeadersVisible = false;
             this.Dgv_Reporte.Size = new System.Drawing.Size(1176, 504);
             this.Dgv_Reporte.TabIndex = 0;
+            // 
+            // Btn_Ver
+            // 
+            this.Btn_Ver.Image = global::Capa_Vista_CxC.Properties.Resources.icono_buscar;
+            this.Btn_Ver.Location = new System.Drawing.Point(885, 27);
+            this.Btn_Ver.Name = "Btn_Ver";
+            this.Btn_Ver.Size = new System.Drawing.Size(73, 50);
+            this.Btn_Ver.TabIndex = 8;
+            // 
+            // Btn_Imprimir
+            // 
+            this.Btn_Imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Imprimir.Image = global::Capa_Vista_CxC.Properties.Resources.icono_imprimir;
+            this.Btn_Imprimir.Location = new System.Drawing.Point(980, 27);
+            this.Btn_Imprimir.Name = "Btn_Imprimir";
+            this.Btn_Imprimir.Size = new System.Drawing.Size(90, 50);
+            this.Btn_Imprimir.TabIndex = 9;
+            this.Btn_Imprimir.Click += new System.EventHandler(this.Btn_Imprimir_Click);
+            // 
+            // Btn_Exportar
+            // 
+            this.Btn_Exportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Exportar.Image = global::Capa_Vista_CxC.Properties.Resources.icono_guardar;
+            this.Btn_Exportar.Location = new System.Drawing.Point(1093, 27);
+            this.Btn_Exportar.Name = "Btn_Exportar";
+            this.Btn_Exportar.Size = new System.Drawing.Size(77, 50);
+            this.Btn_Exportar.TabIndex = 10;
             // 
             // Frm_Reportes
             // 

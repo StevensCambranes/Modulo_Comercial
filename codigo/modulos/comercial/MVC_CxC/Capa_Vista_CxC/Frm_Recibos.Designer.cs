@@ -33,8 +33,6 @@
             this.Dtp_Desde = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Hasta = new System.Windows.Forms.Label();
             this.Dtp_Hasta = new System.Windows.Forms.DateTimePicker();
-            this.Btn_Filtrar = new System.Windows.Forms.Button();
-            this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Dgv_Recibos = new System.Windows.Forms.DataGridView();
             this.colRecibo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReciboFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +45,8 @@
             this.Dtp_FechaRecibo = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Obs = new System.Windows.Forms.Label();
             this.Txt_Obs = new System.Windows.Forms.TextBox();
+            this.Btn_Filtrar = new System.Windows.Forms.Button();
+            this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Btn_NuevoRecibo = new System.Windows.Forms.Button();
             this.Btn_EditarRecibo = new System.Windows.Forms.Button();
             this.Btn_AnularRecibo = new System.Windows.Forms.Button();
@@ -73,7 +73,7 @@
             this.mnuSalir});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1924, 24);
+            this.menu.Size = new System.Drawing.Size(1747, 24);
             this.menu.TabIndex = 0;
             // 
             // mnuRecibos
@@ -118,8 +118,8 @@
             // 
             this.splitRecibos.Panel2.Controls.Add(this.Dgv_Recibos);
             this.splitRecibos.Panel2.Controls.Add(this.Gpb_Recibo);
-            this.splitRecibos.Size = new System.Drawing.Size(1924, 696);
-            this.splitRecibos.SplitterDistance = 1549;
+            this.splitRecibos.Size = new System.Drawing.Size(1747, 696);
+            this.splitRecibos.SplitterDistance = 1103;
             this.splitRecibos.TabIndex = 1;
             // 
             // Dgv_Facturas
@@ -140,7 +140,7 @@
             this.Dgv_Facturas.Name = "Dgv_Facturas";
             this.Dgv_Facturas.ReadOnly = true;
             this.Dgv_Facturas.RowHeadersWidth = 51;
-            this.Dgv_Facturas.Size = new System.Drawing.Size(1549, 611);
+            this.Dgv_Facturas.Size = new System.Drawing.Size(1103, 611);
             this.Dgv_Facturas.TabIndex = 0;
             // 
             // colSel
@@ -200,7 +200,7 @@
             this.Gpb_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F);
             this.Gpb_Buscar.Location = new System.Drawing.Point(0, 0);
             this.Gpb_Buscar.Name = "Gpb_Buscar";
-            this.Gpb_Buscar.Size = new System.Drawing.Size(1549, 85);
+            this.Gpb_Buscar.Size = new System.Drawing.Size(1103, 85);
             this.Gpb_Buscar.TabIndex = 1;
             this.Gpb_Buscar.TabStop = false;
             this.Gpb_Buscar.Text = "Filtro de facturas pendientes";
@@ -253,24 +253,6 @@
             this.Dtp_Hasta.Size = new System.Drawing.Size(170, 23);
             this.Dtp_Hasta.TabIndex = 5;
             // 
-            // Btn_Filtrar
-            // 
-            this.Btn_Filtrar.Enabled = false;
-            this.Btn_Filtrar.Location = new System.Drawing.Point(770, 24);
-            this.Btn_Filtrar.Name = "Btn_Filtrar";
-            this.Btn_Filtrar.Size = new System.Drawing.Size(75, 27);
-            this.Btn_Filtrar.TabIndex = 6;
-            this.Btn_Filtrar.Text = "Filtrar";
-            // 
-            // Btn_Limpiar
-            // 
-            this.Btn_Limpiar.Enabled = false;
-            this.Btn_Limpiar.Location = new System.Drawing.Point(850, 24);
-            this.Btn_Limpiar.Name = "Btn_Limpiar";
-            this.Btn_Limpiar.Size = new System.Drawing.Size(95, 27);
-            this.Btn_Limpiar.TabIndex = 7;
-            this.Btn_Limpiar.Text = "Limpiar";
-            // 
             // Dgv_Recibos
             // 
             this.Dgv_Recibos.AllowUserToAddRows = false;
@@ -287,7 +269,7 @@
             this.Dgv_Recibos.Name = "Dgv_Recibos";
             this.Dgv_Recibos.ReadOnly = true;
             this.Dgv_Recibos.RowHeadersWidth = 51;
-            this.Dgv_Recibos.Size = new System.Drawing.Size(371, 556);
+            this.Dgv_Recibos.Size = new System.Drawing.Size(640, 556);
             this.Dgv_Recibos.TabIndex = 0;
             // 
             // colRecibo
@@ -334,7 +316,7 @@
             this.Gpb_Recibo.Font = new System.Drawing.Font("Rockwell", 9.75F);
             this.Gpb_Recibo.Location = new System.Drawing.Point(0, 0);
             this.Gpb_Recibo.Name = "Gpb_Recibo";
-            this.Gpb_Recibo.Size = new System.Drawing.Size(371, 140);
+            this.Gpb_Recibo.Size = new System.Drawing.Size(640, 140);
             this.Gpb_Recibo.TabIndex = 1;
             this.Gpb_Recibo.TabStop = false;
             this.Gpb_Recibo.Text = "Recibo de pago";
@@ -388,39 +370,57 @@
             this.Txt_Obs.Size = new System.Drawing.Size(236, 45);
             this.Txt_Obs.TabIndex = 5;
             // 
+            // Btn_Filtrar
+            // 
+            this.Btn_Filtrar.Enabled = false;
+            this.Btn_Filtrar.Image = global::Capa_Vista_CxC.Properties.Resources.icono_buscar;
+            this.Btn_Filtrar.Location = new System.Drawing.Point(781, 13);
+            this.Btn_Filtrar.Name = "Btn_Filtrar";
+            this.Btn_Filtrar.Size = new System.Drawing.Size(63, 49);
+            this.Btn_Filtrar.TabIndex = 6;
+            // 
+            // Btn_Limpiar
+            // 
+            this.Btn_Limpiar.Enabled = false;
+            this.Btn_Limpiar.Image = global::Capa_Vista_CxC.Properties.Resources.icono_limpiar__1_;
+            this.Btn_Limpiar.Location = new System.Drawing.Point(864, 13);
+            this.Btn_Limpiar.Name = "Btn_Limpiar";
+            this.Btn_Limpiar.Size = new System.Drawing.Size(66, 50);
+            this.Btn_Limpiar.TabIndex = 7;
+            // 
             // Btn_NuevoRecibo
             // 
             this.Btn_NuevoRecibo.Enabled = false;
+            this.Btn_NuevoRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_agregar;
             this.Btn_NuevoRecibo.Location = new System.Drawing.Point(400, 24);
             this.Btn_NuevoRecibo.Name = "Btn_NuevoRecibo";
-            this.Btn_NuevoRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_NuevoRecibo.Size = new System.Drawing.Size(74, 39);
             this.Btn_NuevoRecibo.TabIndex = 6;
-            this.Btn_NuevoRecibo.Text = "Nuevo";
             // 
             // Btn_EditarRecibo
             // 
             this.Btn_EditarRecibo.Enabled = false;
+            this.Btn_EditarRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_modificar;
             this.Btn_EditarRecibo.Location = new System.Drawing.Point(480, 24);
             this.Btn_EditarRecibo.Name = "Btn_EditarRecibo";
-            this.Btn_EditarRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_EditarRecibo.Size = new System.Drawing.Size(74, 39);
             this.Btn_EditarRecibo.TabIndex = 7;
-            this.Btn_EditarRecibo.Text = "Editar";
             // 
             // Btn_AnularRecibo
             // 
             this.Btn_AnularRecibo.Enabled = false;
+            this.Btn_AnularRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_cancelar;
             this.Btn_AnularRecibo.Location = new System.Drawing.Point(560, 24);
             this.Btn_AnularRecibo.Name = "Btn_AnularRecibo";
-            this.Btn_AnularRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_AnularRecibo.Size = new System.Drawing.Size(76, 39);
             this.Btn_AnularRecibo.TabIndex = 8;
-            this.Btn_AnularRecibo.Text = "Anular";
             // 
             // Frm_Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1924, 720);
+            this.ClientSize = new System.Drawing.Size(1747, 720);
             this.Controls.Add(this.splitRecibos);
             this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("Rockwell", 9F);

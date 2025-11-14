@@ -27,7 +27,6 @@
             this.Txt_Referencia = new System.Windows.Forms.TextBox();
             this.Lbl_FechaPago = new System.Windows.Forms.Label();
             this.Dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
-            this.Btn_AgregarLineaPago = new System.Windows.Forms.Button();
             this.Dgv_LineasPago = new System.Windows.Forms.DataGridView();
             this.colLPFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLPCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +38,7 @@
             this.Txt_TotalPago = new System.Windows.Forms.TextBox();
             this.Btn_GuardarPago = new System.Windows.Forms.Button();
             this.Btn_CancelarPago = new System.Windows.Forms.Button();
+            this.Btn_AgregarLineaPago = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.Gpb_Pago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_LineasPago)).BeginInit();
@@ -175,15 +175,6 @@
             this.Dtp_FechaPago.Size = new System.Drawing.Size(170, 23);
             this.Dtp_FechaPago.TabIndex = 7;
             // 
-            // Btn_AgregarLineaPago
-            // 
-            this.Btn_AgregarLineaPago.Enabled = false;
-            this.Btn_AgregarLineaPago.Location = new System.Drawing.Point(990, 29);
-            this.Btn_AgregarLineaPago.Name = "Btn_AgregarLineaPago";
-            this.Btn_AgregarLineaPago.Size = new System.Drawing.Size(110, 25);
-            this.Btn_AgregarLineaPago.TabIndex = 8;
-            this.Btn_AgregarLineaPago.Text = "Agregar a líneas";
-            // 
             // Dgv_LineasPago
             // 
             this.Dgv_LineasPago.AllowUserToAddRows = false;
@@ -277,6 +268,15 @@
             this.Btn_CancelarPago.Size = new System.Drawing.Size(85, 25);
             this.Btn_CancelarPago.TabIndex = 3;
             this.Btn_CancelarPago.Text = "Cancelar";
+            // 
+            // Btn_AgregarLineaPago
+            // 
+            this.Btn_AgregarLineaPago.Enabled = false;
+            this.Btn_AgregarLineaPago.Image = global::Capa_Vista_CxC.Properties.Resources.icono_agregar;
+            this.Btn_AgregarLineaPago.Location = new System.Drawing.Point(1002, 30);
+            this.Btn_AgregarLineaPago.Name = "Btn_AgregarLineaPago";
+            this.Btn_AgregarLineaPago.Size = new System.Drawing.Size(75, 47);
+            this.Btn_AgregarLineaPago.TabIndex = 8;
             // 
             // Frm_AplicarPago
             // 
