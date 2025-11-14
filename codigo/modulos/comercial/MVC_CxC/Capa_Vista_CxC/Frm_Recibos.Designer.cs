@@ -16,9 +16,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.mnuRecibos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAplicarPago = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAntiguedad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCierre = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.splitRecibos = new System.Windows.Forms.SplitContainer();
             this.Dgv_Facturas = new System.Windows.Forms.DataGridView();
@@ -35,9 +33,7 @@
             this.Dtp_Desde = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Hasta = new System.Windows.Forms.Label();
             this.Dtp_Hasta = new System.Windows.Forms.DateTimePicker();
-            this.Btn_Filtrar = new System.Windows.Forms.Button();
-            this.Btn_Limpiar = new System.Windows.Forms.Button();
-            this.gridRecibos = new System.Windows.Forms.DataGridView();
+            this.Dgv_Recibos = new System.Windows.Forms.DataGridView();
             this.colRecibo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReciboFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReciboCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +45,8 @@
             this.Dtp_FechaRecibo = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Obs = new System.Windows.Forms.Label();
             this.Txt_Obs = new System.Windows.Forms.TextBox();
+            this.Btn_Filtrar = new System.Windows.Forms.Button();
+            this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Btn_NuevoRecibo = new System.Windows.Forms.Button();
             this.Btn_EditarRecibo = new System.Windows.Forms.Button();
             this.Btn_AnularRecibo = new System.Windows.Forms.Button();
@@ -59,7 +57,7 @@
             this.splitRecibos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Facturas)).BeginInit();
             this.Gpb_Buscar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridRecibos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Recibos)).BeginInit();
             this.Gpb_Recibo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,13 +69,11 @@
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRecibos,
             this.mnuAplicarPago,
-            this.mnuAntiguedad,
             this.mnuReportes,
-            this.mnuCierre,
             this.mnuSalir});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1924, 24);
+            this.menu.Size = new System.Drawing.Size(1747, 24);
             this.menu.TabIndex = 0;
             // 
             // mnuRecibos
@@ -93,23 +89,12 @@
             this.mnuAplicarPago.Text = "Aplicar Pago";
             this.mnuAplicarPago.Click += new System.EventHandler(this.mnuAplicarPago_Click);
             // 
-            // mnuAntiguedad
-            // 
-            this.mnuAntiguedad.Name = "mnuAntiguedad";
-            this.mnuAntiguedad.Size = new System.Drawing.Size(88, 20);
-            this.mnuAntiguedad.Text = "Antigüedad";
-            // 
             // mnuReportes
             // 
             this.mnuReportes.Name = "mnuReportes";
             this.mnuReportes.Size = new System.Drawing.Size(72, 20);
             this.mnuReportes.Text = "Reportes";
-            // 
-            // mnuCierre
-            // 
-            this.mnuCierre.Name = "mnuCierre";
-            this.mnuCierre.Size = new System.Drawing.Size(105, 20);
-            this.mnuCierre.Text = "Cierre de Caja";
+            this.mnuReportes.Click += new System.EventHandler(this.mnuReportes_Click);
             // 
             // mnuSalir
             // 
@@ -131,10 +116,10 @@
             // 
             // splitRecibos.Panel2
             // 
-            this.splitRecibos.Panel2.Controls.Add(this.gridRecibos);
+            this.splitRecibos.Panel2.Controls.Add(this.Dgv_Recibos);
             this.splitRecibos.Panel2.Controls.Add(this.Gpb_Recibo);
-            this.splitRecibos.Size = new System.Drawing.Size(1924, 696);
-            this.splitRecibos.SplitterDistance = 1549;
+            this.splitRecibos.Size = new System.Drawing.Size(1747, 696);
+            this.splitRecibos.SplitterDistance = 1103;
             this.splitRecibos.TabIndex = 1;
             // 
             // Dgv_Facturas
@@ -155,7 +140,7 @@
             this.Dgv_Facturas.Name = "Dgv_Facturas";
             this.Dgv_Facturas.ReadOnly = true;
             this.Dgv_Facturas.RowHeadersWidth = 51;
-            this.Dgv_Facturas.Size = new System.Drawing.Size(1549, 611);
+            this.Dgv_Facturas.Size = new System.Drawing.Size(1103, 611);
             this.Dgv_Facturas.TabIndex = 0;
             // 
             // colSel
@@ -215,7 +200,7 @@
             this.Gpb_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F);
             this.Gpb_Buscar.Location = new System.Drawing.Point(0, 0);
             this.Gpb_Buscar.Name = "Gpb_Buscar";
-            this.Gpb_Buscar.Size = new System.Drawing.Size(1549, 85);
+            this.Gpb_Buscar.Size = new System.Drawing.Size(1103, 85);
             this.Gpb_Buscar.TabIndex = 1;
             this.Gpb_Buscar.TabStop = false;
             this.Gpb_Buscar.Text = "Filtro de facturas pendientes";
@@ -268,42 +253,24 @@
             this.Dtp_Hasta.Size = new System.Drawing.Size(170, 23);
             this.Dtp_Hasta.TabIndex = 5;
             // 
-            // Btn_Filtrar
+            // Dgv_Recibos
             // 
-            this.Btn_Filtrar.Enabled = false;
-            this.Btn_Filtrar.Location = new System.Drawing.Point(770, 24);
-            this.Btn_Filtrar.Name = "Btn_Filtrar";
-            this.Btn_Filtrar.Size = new System.Drawing.Size(75, 27);
-            this.Btn_Filtrar.TabIndex = 6;
-            this.Btn_Filtrar.Text = "Filtrar";
-            // 
-            // Btn_Limpiar
-            // 
-            this.Btn_Limpiar.Enabled = false;
-            this.Btn_Limpiar.Location = new System.Drawing.Point(850, 24);
-            this.Btn_Limpiar.Name = "Btn_Limpiar";
-            this.Btn_Limpiar.Size = new System.Drawing.Size(95, 27);
-            this.Btn_Limpiar.TabIndex = 7;
-            this.Btn_Limpiar.Text = "Limpiar";
-            // 
-            // gridRecibos
-            // 
-            this.gridRecibos.AllowUserToAddRows = false;
-            this.gridRecibos.AllowUserToDeleteRows = false;
-            this.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridRecibos.ColumnHeadersHeight = 29;
-            this.gridRecibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_Recibos.AllowUserToAddRows = false;
+            this.Dgv_Recibos.AllowUserToDeleteRows = false;
+            this.Dgv_Recibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_Recibos.ColumnHeadersHeight = 29;
+            this.Dgv_Recibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecibo,
             this.colReciboFecha,
             this.colReciboCliente,
             this.colReciboMonto});
-            this.gridRecibos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridRecibos.Location = new System.Drawing.Point(0, 140);
-            this.gridRecibos.Name = "gridRecibos";
-            this.gridRecibos.ReadOnly = true;
-            this.gridRecibos.RowHeadersWidth = 51;
-            this.gridRecibos.Size = new System.Drawing.Size(371, 556);
-            this.gridRecibos.TabIndex = 0;
+            this.Dgv_Recibos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_Recibos.Location = new System.Drawing.Point(0, 140);
+            this.Dgv_Recibos.Name = "Dgv_Recibos";
+            this.Dgv_Recibos.ReadOnly = true;
+            this.Dgv_Recibos.RowHeadersWidth = 51;
+            this.Dgv_Recibos.Size = new System.Drawing.Size(640, 556);
+            this.Dgv_Recibos.TabIndex = 0;
             // 
             // colRecibo
             // 
@@ -349,7 +316,7 @@
             this.Gpb_Recibo.Font = new System.Drawing.Font("Rockwell", 9.75F);
             this.Gpb_Recibo.Location = new System.Drawing.Point(0, 0);
             this.Gpb_Recibo.Name = "Gpb_Recibo";
-            this.Gpb_Recibo.Size = new System.Drawing.Size(371, 140);
+            this.Gpb_Recibo.Size = new System.Drawing.Size(640, 140);
             this.Gpb_Recibo.TabIndex = 1;
             this.Gpb_Recibo.TabStop = false;
             this.Gpb_Recibo.Text = "Recibo de pago";
@@ -403,46 +370,64 @@
             this.Txt_Obs.Size = new System.Drawing.Size(236, 45);
             this.Txt_Obs.TabIndex = 5;
             // 
+            // Btn_Filtrar
+            // 
+            this.Btn_Filtrar.Enabled = false;
+            this.Btn_Filtrar.Image = global::Capa_Vista_CxC.Properties.Resources.icono_buscar;
+            this.Btn_Filtrar.Location = new System.Drawing.Point(781, 13);
+            this.Btn_Filtrar.Name = "Btn_Filtrar";
+            this.Btn_Filtrar.Size = new System.Drawing.Size(63, 49);
+            this.Btn_Filtrar.TabIndex = 6;
+            // 
+            // Btn_Limpiar
+            // 
+            this.Btn_Limpiar.Enabled = false;
+            this.Btn_Limpiar.Image = global::Capa_Vista_CxC.Properties.Resources.icono_limpiar__1_;
+            this.Btn_Limpiar.Location = new System.Drawing.Point(864, 13);
+            this.Btn_Limpiar.Name = "Btn_Limpiar";
+            this.Btn_Limpiar.Size = new System.Drawing.Size(66, 50);
+            this.Btn_Limpiar.TabIndex = 7;
+            // 
             // Btn_NuevoRecibo
             // 
             this.Btn_NuevoRecibo.Enabled = false;
+            this.Btn_NuevoRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_agregar;
             this.Btn_NuevoRecibo.Location = new System.Drawing.Point(400, 24);
             this.Btn_NuevoRecibo.Name = "Btn_NuevoRecibo";
-            this.Btn_NuevoRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_NuevoRecibo.Size = new System.Drawing.Size(74, 39);
             this.Btn_NuevoRecibo.TabIndex = 6;
-            this.Btn_NuevoRecibo.Text = "Nuevo";
             // 
             // Btn_EditarRecibo
             // 
             this.Btn_EditarRecibo.Enabled = false;
+            this.Btn_EditarRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_modificar;
             this.Btn_EditarRecibo.Location = new System.Drawing.Point(480, 24);
             this.Btn_EditarRecibo.Name = "Btn_EditarRecibo";
-            this.Btn_EditarRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_EditarRecibo.Size = new System.Drawing.Size(74, 39);
             this.Btn_EditarRecibo.TabIndex = 7;
-            this.Btn_EditarRecibo.Text = "Editar";
             // 
             // Btn_AnularRecibo
             // 
             this.Btn_AnularRecibo.Enabled = false;
+            this.Btn_AnularRecibo.Image = global::Capa_Vista_CxC.Properties.Resources.icono_cancelar;
             this.Btn_AnularRecibo.Location = new System.Drawing.Point(560, 24);
             this.Btn_AnularRecibo.Name = "Btn_AnularRecibo";
-            this.Btn_AnularRecibo.Size = new System.Drawing.Size(75, 25);
+            this.Btn_AnularRecibo.Size = new System.Drawing.Size(76, 39);
             this.Btn_AnularRecibo.TabIndex = 8;
-            this.Btn_AnularRecibo.Text = "Anular";
             // 
             // Frm_Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1924, 720);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1747, 720);
             this.Controls.Add(this.splitRecibos);
             this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("Rockwell", 9F);
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Frm_Recibos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cuentas por Cobrar — Recibos (Prototipo)";
+            this.Text = "Cuentas por Cobrar — Recibos ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -453,7 +438,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Facturas)).EndInit();
             this.Gpb_Buscar.ResumeLayout(false);
             this.Gpb_Buscar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridRecibos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Recibos)).EndInit();
             this.Gpb_Recibo.ResumeLayout(false);
             this.Gpb_Recibo.PerformLayout();
             this.ResumeLayout(false);
@@ -466,9 +451,7 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem mnuRecibos;
         private System.Windows.Forms.ToolStripMenuItem mnuAplicarPago;
-        private System.Windows.Forms.ToolStripMenuItem mnuAntiguedad;
         private System.Windows.Forms.ToolStripMenuItem mnuReportes;
-        private System.Windows.Forms.ToolStripMenuItem mnuCierre;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
 
         private System.Windows.Forms.SplitContainer splitRecibos;
@@ -490,7 +473,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSaldo;
 
-        private System.Windows.Forms.DataGridView gridRecibos;
+        private System.Windows.Forms.DataGridView Dgv_Recibos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecibo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReciboFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReciboCliente;

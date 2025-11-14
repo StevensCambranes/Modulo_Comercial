@@ -5,7 +5,7 @@ using System.Data.Odbc;
 
 namespace Capa_Modelo_CxC
 {
-    public class Cls_Sentencias_SQL : Cls_IRepositorioCxC
+    public class Cls_RepositorioSqlCxC : Cls_IRepositorioCxC
     {
         private readonly Cls_Conexion _cx = new Cls_Conexion();
 

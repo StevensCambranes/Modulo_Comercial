@@ -16,9 +16,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.mnuRecibos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAplicarPago = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAntiguedad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCierre = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.Gpb_Pago = new System.Windows.Forms.GroupBox();
             this.Lbl_Metodo = new System.Windows.Forms.Label();
@@ -29,8 +27,7 @@
             this.Txt_Referencia = new System.Windows.Forms.TextBox();
             this.Lbl_FechaPago = new System.Windows.Forms.Label();
             this.Dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
-            this.Btn_AgregarLineaPago = new System.Windows.Forms.Button();
-            this.gridLineasPago = new System.Windows.Forms.DataGridView();
+            this.Dgv_LineasPago = new System.Windows.Forms.DataGridView();
             this.colLPFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLPCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLPSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,9 +38,10 @@
             this.Txt_TotalPago = new System.Windows.Forms.TextBox();
             this.Btn_GuardarPago = new System.Windows.Forms.Button();
             this.Btn_CancelarPago = new System.Windows.Forms.Button();
+            this.Btn_AgregarLineaPago = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.Gpb_Pago.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLineasPago)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_LineasPago)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -53,9 +51,7 @@
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRecibos,
             this.mnuAplicarPago,
-            this.mnuAntiguedad,
             this.mnuReportes,
-            this.mnuCierre,
             this.mnuSalir});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -75,23 +71,12 @@
             this.mnuAplicarPago.Size = new System.Drawing.Size(94, 20);
             this.mnuAplicarPago.Text = "Aplicar Pago";
             // 
-            // mnuAntiguedad
-            // 
-            this.mnuAntiguedad.Name = "mnuAntiguedad";
-            this.mnuAntiguedad.Size = new System.Drawing.Size(88, 20);
-            this.mnuAntiguedad.Text = "Antigüedad";
-            // 
             // mnuReportes
             // 
             this.mnuReportes.Name = "mnuReportes";
             this.mnuReportes.Size = new System.Drawing.Size(72, 20);
             this.mnuReportes.Text = "Reportes";
-            // 
-            // mnuCierre
-            // 
-            this.mnuCierre.Name = "mnuCierre";
-            this.mnuCierre.Size = new System.Drawing.Size(105, 20);
-            this.mnuCierre.Text = "Cierre de Caja";
+            this.mnuReportes.Click += new System.EventHandler(this.mnuReportes_Click);
             // 
             // mnuSalir
             // 
@@ -190,34 +175,25 @@
             this.Dtp_FechaPago.Size = new System.Drawing.Size(170, 23);
             this.Dtp_FechaPago.TabIndex = 7;
             // 
-            // Btn_AgregarLineaPago
+            // Dgv_LineasPago
             // 
-            this.Btn_AgregarLineaPago.Enabled = false;
-            this.Btn_AgregarLineaPago.Location = new System.Drawing.Point(990, 29);
-            this.Btn_AgregarLineaPago.Name = "Btn_AgregarLineaPago";
-            this.Btn_AgregarLineaPago.Size = new System.Drawing.Size(110, 25);
-            this.Btn_AgregarLineaPago.TabIndex = 8;
-            this.Btn_AgregarLineaPago.Text = "Agregar a líneas";
-            // 
-            // gridLineasPago
-            // 
-            this.gridLineasPago.AllowUserToAddRows = false;
-            this.gridLineasPago.AllowUserToDeleteRows = false;
-            this.gridLineasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridLineasPago.ColumnHeadersHeight = 29;
-            this.gridLineasPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_LineasPago.AllowUserToAddRows = false;
+            this.Dgv_LineasPago.AllowUserToDeleteRows = false;
+            this.Dgv_LineasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_LineasPago.ColumnHeadersHeight = 29;
+            this.Dgv_LineasPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLPFactura,
             this.colLPCliente,
             this.colLPSaldo,
             this.colLPMonto,
             this.colLPMetodo,
             this.colLPRef});
-            this.gridLineasPago.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridLineasPago.Location = new System.Drawing.Point(0, 164);
-            this.gridLineasPago.Name = "gridLineasPago";
-            this.gridLineasPago.ReadOnly = true;
-            this.gridLineasPago.Size = new System.Drawing.Size(1200, 556);
-            this.gridLineasPago.TabIndex = 0;
+            this.Dgv_LineasPago.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_LineasPago.Location = new System.Drawing.Point(0, 164);
+            this.Dgv_LineasPago.Name = "Dgv_LineasPago";
+            this.Dgv_LineasPago.ReadOnly = true;
+            this.Dgv_LineasPago.Size = new System.Drawing.Size(1200, 556);
+            this.Dgv_LineasPago.TabIndex = 0;
             // 
             // colLPFactura
             // 
@@ -293,13 +269,22 @@
             this.Btn_CancelarPago.TabIndex = 3;
             this.Btn_CancelarPago.Text = "Cancelar";
             // 
+            // Btn_AgregarLineaPago
+            // 
+            this.Btn_AgregarLineaPago.Enabled = false;
+            this.Btn_AgregarLineaPago.Image = global::Capa_Vista_CxC.Properties.Resources.icono_agregar;
+            this.Btn_AgregarLineaPago.Location = new System.Drawing.Point(1002, 30);
+            this.Btn_AgregarLineaPago.Name = "Btn_AgregarLineaPago";
+            this.Btn_AgregarLineaPago.Size = new System.Drawing.Size(75, 47);
+            this.Btn_AgregarLineaPago.TabIndex = 8;
+            // 
             // Frm_AplicarPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1200, 720);
-            this.Controls.Add(this.gridLineasPago);
+            this.Controls.Add(this.Dgv_LineasPago);
             this.Controls.Add(this.Lbl_TotalPago);
             this.Controls.Add(this.Txt_TotalPago);
             this.Controls.Add(this.Btn_CancelarPago);
@@ -310,13 +295,13 @@
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Frm_AplicarPago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cuentas por Cobrar — Aplicar Pago (Prototipo)";
+            this.Text = "Cuentas por Cobrar — Aplicar Pago ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.Gpb_Pago.ResumeLayout(false);
             this.Gpb_Pago.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLineasPago)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_LineasPago)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,9 +312,7 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem mnuRecibos;
         private System.Windows.Forms.ToolStripMenuItem mnuAplicarPago;
-        private System.Windows.Forms.ToolStripMenuItem mnuAntiguedad;
         private System.Windows.Forms.ToolStripMenuItem mnuReportes;
-        private System.Windows.Forms.ToolStripMenuItem mnuCierre;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
 
         private System.Windows.Forms.GroupBox Gpb_Pago;
@@ -343,7 +326,7 @@
         private System.Windows.Forms.DateTimePicker Dtp_FechaPago;
         private System.Windows.Forms.Button Btn_AgregarLineaPago;
 
-        private System.Windows.Forms.DataGridView gridLineasPago;
+        private System.Windows.Forms.DataGridView Dgv_LineasPago;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLPSaldo;
